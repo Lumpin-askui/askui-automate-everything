@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Problems from "@/components/Problems";
 import Products from "@/components/Products";
 import Features from "@/components/Features";
-import BlogCaseStudies from "@/components/BlogCaseStudies";
+import CustomerStory from "@/components/CustomerStory";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import dbLogo from "@/assets/clients/db.png";
@@ -49,7 +49,7 @@ const Index = () => {
       <Problems />
       <Products />
       <Features />
-      <BlogCaseStudies />
+      <CustomerStory />
       <CTA />
       <Footer />
     </div>
