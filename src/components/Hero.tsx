@@ -84,9 +84,6 @@ We are now starting to Execute:
 Results: ./output/test-results.json`}</code>
                     </pre>
                   </div>
-                  <p className="text-white/70 text-center mt-6 text-base">
-                    Command-line automation for CI/CD pipelines and DevOps workflows.
-                  </p>
                 </TabsContent>
 
                 <TabsContent value="chat" className="mt-0">
