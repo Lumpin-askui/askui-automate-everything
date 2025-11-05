@@ -93,9 +93,9 @@ const Header = () => {
               </NavigationMenuList>
             </NavigationMenu>
             
-            <a href="#customers" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            <Link to="/case-studies" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Customers
-            </a>
+            </Link>
             <Link to="/blog" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Blog
             </Link>
@@ -130,9 +130,9 @@ const Header = () => {
             <a href="#solutions" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Solutions
             </a>
-            <a href="#customers" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            <Link to="/case-studies" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Customers
-            </a>
+            </Link>
             <Link to="/blog" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Blog
             </Link>
