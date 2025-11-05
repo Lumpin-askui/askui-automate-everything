@@ -40,7 +40,7 @@ const Hero = () => {
               Deploy AI agents on Windows, MacOS, Linux, iOS, and Android with enterprise-grade security, reliability, and compliance.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary font-semibold shadow-glow" asChild>
                 <a href="#contact">Book a Demo</a>
               </Button>
@@ -51,22 +51,26 @@ const Hero = () => {
                 </a>
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Customer Logos */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center max-w-4xl mx-auto">
-              {customers.map((customer, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center"
-                >
-                  <img
-                    src={customer.logo}
-                    alt={customer.name}
-                    className="h-6 md:h-8 w-auto object-contain opacity-40 hover:opacity-70 transition-opacity grayscale hover:grayscale-0"
-                  />
-                </div>
-              ))}
-            </div>
+      {/* Customer Logos */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center max-w-5xl mx-auto">
+            {customers.map((customer, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-center"
+              >
+                <img
+                  src={customer.logo}
+                  alt={customer.name}
+                  className="h-8 md:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
