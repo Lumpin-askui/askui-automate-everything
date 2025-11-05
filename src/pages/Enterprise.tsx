@@ -109,33 +109,33 @@ const Enterprise = () => {
           </div>
 
           {/* Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
             <div>
               <h2 className="text-2xl font-bold mb-6">Enterprise Benefits</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-6 w-6 text-[#962C5D] flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold">Custom SLAs</div>
                     <div className="text-sm text-muted-foreground">Tailored service level agreements for your business needs</div>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-6 w-6 text-[#962C5D] flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold">Priority Support</div>
                     <div className="text-sm text-muted-foreground">Direct access to engineering team and 24/7 support</div>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-6 w-6 text-[#962C5D] flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold">Volume Licensing</div>
                     <div className="text-sm text-muted-foreground">Flexible pricing for large deployments</div>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-6 w-6 text-[#962C5D] flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold">Custom Integrations</div>
                     <div className="text-sm text-muted-foreground">Integrate with your existing tools and workflows</div>
@@ -148,28 +148,28 @@ const Enterprise = () => {
               <h2 className="text-2xl font-bold mb-6">Security & Compliance</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-6 w-6 text-[#962C5D] flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold">ISO27001 Certification</div>
                     <div className="text-sm text-muted-foreground">Information security management certified</div>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-6 w-6 text-[#962C5D] flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold">SOC 2 Type II</div>
                     <div className="text-sm text-muted-foreground">Independently audited security controls</div>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-6 w-6 text-[#962C5D] flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold">GDPR Compliant</div>
                     <div className="text-sm text-muted-foreground">Full European data protection compliance</div>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-6 w-6 text-[#962C5D] flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold">Air-Gapped Options</div>
                     <div className="text-sm text-muted-foreground">Deploy in completely isolated environments</div>
