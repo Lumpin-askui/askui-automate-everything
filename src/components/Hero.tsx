@@ -149,9 +149,6 @@ Results: ./output/test-results.json`}</code>
                     </a>
                   </Button>
                 </div>
-                <p className="text-white/60 text-sm mt-6">
-                  No credit card required • Free tier available • Enterprise support
-                </p>
                 
                 {/* Security Badges */}
                 <div className="flex flex-wrap gap-4 justify-center mt-6">
