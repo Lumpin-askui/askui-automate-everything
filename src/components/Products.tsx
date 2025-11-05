@@ -67,7 +67,7 @@ const Products = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold mb-1">{product.name}</h3>
-                  <p className="text-sm font-medium text-accent">{product.tagline}</p>
+                  <p className="text-sm font-medium text-primary/70">{product.tagline}</p>
                 </div>
               </div>
               
@@ -99,7 +99,7 @@ const Products = () => {
               </div>
               
               <h3 className="text-xl font-bold mb-1">{product.name}</h3>
-              <p className="text-sm font-medium text-accent mb-3">{product.tagline}</p>
+              <p className="text-sm font-medium text-primary/70 mb-3">{product.tagline}</p>
               
               <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
               

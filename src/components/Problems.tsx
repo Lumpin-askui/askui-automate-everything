@@ -63,7 +63,7 @@ const Problems = () => {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-2">{item.title}</h3>
                   <p className="text-sm text-muted-foreground mb-2">{item.problem}</p>
-                  <p className="text-sm font-medium text-accent">→ {item.solution}</p>
+                  <p className="text-sm font-medium text-foreground">→ {item.solution}</p>
                 </div>
               </div>
             </Card>
