@@ -131,9 +131,6 @@ Results: ./output/test-results.json`}</code>
                       </div>
                     </div>
                   </div>
-                  <p className="text-white/70 text-center mt-6 text-base">
-                    No-code automation for all platforms. No technical skills required.
-                  </p>
                 </TabsContent>
               </Tabs>
 
