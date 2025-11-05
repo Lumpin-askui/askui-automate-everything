@@ -82,22 +82,22 @@ const Header = () => {
                     <div className="w-[400px] p-4 bg-background">
                       <div className="space-y-3">
                         <NavigationMenuLink asChild>
-                          <a href="#solutions" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                          <Link to="/solutions/software-testing" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
                             <div className="font-semibold mb-1">Software Testing & Infrastructure Teams</div>
                             <div className="text-sm text-muted-foreground">Automated testing and quality assurance at scale</div>
-                          </a>
+                          </Link>
                         </NavigationMenuLink>
                         <NavigationMenuLink asChild>
-                          <a href="#solutions" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                          <Link to="/solutions/automation-teams" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
                             <div className="font-semibold mb-1">Automation Teams</div>
                             <div className="text-sm text-muted-foreground">RPA and workflow automation solutions</div>
-                          </a>
+                          </Link>
                         </NavigationMenuLink>
                         <NavigationMenuLink asChild>
-                          <a href="#solutions" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                          <Link to="/solutions/agent-startups" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
                             <div className="font-semibold mb-1">Agent Startups</div>
                             <div className="text-sm text-muted-foreground">Infrastructure for building AI agent products</div>
-                          </a>
+                          </Link>
                         </NavigationMenuLink>
                       </div>
                     </div>
@@ -172,18 +172,18 @@ const Header = () => {
                 <ChevronDown className={`h-4 w-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} />
               </CollapsibleTrigger>
               <CollapsibleContent className="mt-2 space-y-2 pl-4">
-                <a href="#solutions" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/solutions/software-testing" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <div className="font-semibold mb-0.5">Software Testing & Infrastructure Teams</div>
                   <div className="text-xs">Automated testing and quality assurance at scale</div>
-                </a>
-                <a href="#solutions" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                </Link>
+                <Link to="/solutions/automation-teams" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <div className="font-semibold mb-0.5">Automation Teams</div>
                   <div className="text-xs">RPA and workflow automation solutions</div>
-                </a>
-                <a href="#solutions" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                </Link>
+                <Link to="/solutions/agent-startups" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <div className="font-semibold mb-0.5">Agent Startups</div>
                   <div className="text-xs">Infrastructure for building AI agent products</div>
-                </a>
+                </Link>
               </CollapsibleContent>
             </Collapsible>
 
