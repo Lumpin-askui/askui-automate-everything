@@ -1,0 +1,17 @@
+{
+  "id": "3",
+  "slug": "cross-platform-automation-at-scale",
+  "title": "Cross-Platform Automation at Scale",
+  "excerpt": "Strategies and best practices for managing automated workflows across Windows, MacOS, Linux, iOS, and Android platforms.",
+  "content": "Managing automation across multiple platforms presents unique challenges. Here's how to approach it effectively.\n\n## Platform Differences\n\nEach platform has its own characteristics and requirements. Understanding these differences is key to success.\n\n## Unified Approach\n\nWe've developed a unified approach that allows you to write automation once and deploy it across platforms.\n\n## Scaling Considerations\n\n- Resource management\n- Load distribution\n- Error handling\n- Performance optimization\n\n## Best Practices\n\n1. Abstract platform-specific code\n2. Use consistent interfaces\n3. Implement comprehensive testing\n4. Monitor performance metrics\n5. Plan for scalability from the start",
+  "category": "Best Practices",
+  "readTime": "6 min read",
+  "date": "2025-01-05",
+  "publishedAt": "2025-01-05T09:00:00Z",
+  "author": "Lisa Park",
+  "authorRole": "Product Manager",
+  "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=400&fit=crop",
+  "tags": ["automation", "cross-platform", "scaling", "best-practices"],
+  "featured": true
+}
+

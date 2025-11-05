@@ -1,0 +1,25 @@
+{
+  "id": "4",
+  "slug": "zucchetti",
+  "company": "Zucchetti",
+  "logo": "/src/assets/clients/zucchetti.png",
+  "industry": "Enterprise Software",
+  "challenge": "Testing enterprise management software across diverse customer environments and configurations",
+  "solution": "Implemented AskUI Caesr for non-technical QA team members and AskUI Suite for comprehensive testing",
+  "results": [
+    "75% reduction in test execution time",
+    "Enabled non-technical testing",
+    "99.8% test accuracy rate",
+    "50% cost reduction in QA operations"
+  ],
+  "metrics": {
+    "timeSaved": "75%",
+    "coverage": "98%",
+    "roi": "280%"
+  },
+  "quote": "The no-code interface has democratized testing in our organization. Our entire QA team is now empowered to create complex test scenarios.",
+  "author": "Maria Rossi, QA Manager",
+  "content": "Zucchetti, a leading provider of enterprise management software, needed a testing solution that could work across diverse customer environments.\n\n## The Challenge\n\nTesting enterprise software across diverse customer environments and configurations was challenging. The company also needed to enable non-technical team members to create and execute tests.\n\n## The Solution\n\nZucchetti implemented AskUI Caesr for non-technical QA team members and AskUI Suite for comprehensive testing. This dual approach allowed them to leverage the strengths of both technical and non-technical team members.\n\n## Results\n\nThe implementation delivered significant improvements:\n\n- 75% reduction in test execution time\n- Enabled non-technical testing\n- 99.8% test accuracy rate\n- 50% cost reduction in QA operations\n\n## Impact\n\nZucchetti has democratized testing in their organization, enabling all team members to contribute to quality assurance. The cost savings and improved accuracy have made a significant impact on their operations.",
+  "featured": false
+}
+

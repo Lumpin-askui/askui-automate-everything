@@ -1,106 +1,37 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, Clock, Tag } from "lucide-react";
-
-const categories = ["All", "Benchmarks", "Engineering", "Best Practices", "Product Updates", "Tutorials"];
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "Leading Android World Benchmark Results",
-    excerpt: "How AskUI achieved top performance in the Android World benchmark with our optimized infrastructure and multi-platform approach.",
-    category: "Benchmarks",
-    readTime: "5 min read",
-    date: "2025-01-15",
-    author: "Dr. Sarah Chen",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Building Production-Ready Computer Use Agents",
-    excerpt: "A comprehensive guide to deploying AI agents in enterprise environments with reliability, security, and compliance at scale.",
-    category: "Engineering",
-    readTime: "8 min read",
-    date: "2025-01-10",
-    author: "Marcus Johnson",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Cross-Platform Automation at Scale",
-    excerpt: "Strategies and best practices for managing automated workflows across Windows, MacOS, Linux, iOS, and Android platforms.",
-    category: "Best Practices",
-    readTime: "6 min read",
-    date: "2025-01-05",
-    author: "Lisa Park",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=400&fit=crop"
-  },
-  {
-    id: 4,
-    title: "Introducing AskUI CLI 2.0",
-    excerpt: "Major update brings enhanced model support, improved orchestration, and new sandbox management capabilities.",
-    category: "Product Updates",
-    readTime: "4 min read",
-    date: "2024-12-28",
-    author: "AskUI Team",
-    image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=400&fit=crop"
-  },
-  {
-    id: 5,
-    title: "Getting Started with AskUI SDK",
-    excerpt: "Complete tutorial on building your first computer use agent with the AskUI Python SDK and connecting to devices.",
-    category: "Tutorials",
-    readTime: "10 min read",
-    date: "2024-12-20",
-    author: "Alex Rivera",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&h=400&fit=crop"
-  },
-  {
-    id: 6,
-    title: "OSWorld Benchmark Performance Analysis",
-    excerpt: "Deep dive into our OSWorld benchmark results and the optimizations that made them possible.",
-    category: "Benchmarks",
-    readTime: "7 min read",
-    date: "2024-12-15",
-    author: "Dr. Sarah Chen",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop"
-  },
-  {
-    id: 7,
-    title: "Securing Your AI Agent Infrastructure",
-    excerpt: "Best practices for implementing enterprise-grade security in computer use agent deployments.",
-    category: "Best Practices",
-    readTime: "9 min read",
-    date: "2024-12-10",
-    author: "Marcus Johnson",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=400&fit=crop"
-  },
-  {
-    id: 8,
-    title: "Mobile Device Automation with AskUI",
-    excerpt: "Learn how to automate iOS and Android devices using AskUI Suite's advanced capabilities.",
-    category: "Tutorials",
-    readTime: "12 min read",
-    date: "2024-12-05",
-    author: "Lisa Park",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop"
-  }
-];
+import { cms } from "@/services/cms";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const allPosts = cms.getAllBlogPosts();
+  const categories = ["All", ...cms.getBlogCategories()];
+
+  const filteredPosts = useMemo(() => {
+    let posts = allPosts;
+
+    // Filter by category
+    if (selectedCategory !== "All") {
+      posts = cms.getBlogPostsByCategory(selectedCategory);
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      posts = cms.searchBlogPosts(searchQuery).filter(post => 
+        selectedCategory === "All" || post.category === selectedCategory
+      );
+    }
+
+    return posts;
+  }, [selectedCategory, searchQuery, allPosts]);
 
   return (
     <div className="min-h-screen">
@@ -164,46 +95,48 @@ const Blog = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post) => (
-                <Card key={post.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 group cursor-pointer">
-                  <div className="aspect-video overflow-hidden">
-                    <img 
-                      src={post.image} 
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
-                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-accent/10 text-accent font-medium">
-                        <Tag className="h-3 w-3" />
-                        {post.category}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {post.readTime}
-                      </span>
+                <Link key={post.id} to={`/blog/${post.slug}`}>
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 group cursor-pointer h-full">
+                    <div className="aspect-video overflow-hidden">
+                      <img 
+                        src={post.image} 
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
-                    
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
-                      {post.title}
-                    </h3>
-                    
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                      {post.excerpt}
-                    </p>
+                    <div className="p-6">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-accent/10 text-accent font-medium">
+                          <Tag className="h-3 w-3" />
+                          {post.category}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          {post.readTime}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
+                        {post.title}
+                      </h3>
+                      
+                      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                        {post.excerpt}
+                      </p>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                      <div className="text-xs text-muted-foreground">
-                        <div className="font-medium text-foreground">{post.author}</div>
-                        <div>{post.date}</div>
-                      </div>
-                      <div className="flex items-center text-sm font-medium text-accent">
-                        Read
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                        <div className="text-xs text-muted-foreground">
+                          <div className="font-medium text-foreground">{post.author}</div>
+                          <div>{new Date(post.date).toLocaleDateString()}</div>
+                        </div>
+                        <div className="flex items-center text-sm font-medium text-accent">
+                          Read
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </Link>
               ))}
             </div>
           )}

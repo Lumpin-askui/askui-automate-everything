@@ -1,0 +1,25 @@
+{
+  "id": "2",
+  "slug": "sew-eurodrive",
+  "company": "SEW Eurodrive",
+  "logo": "/src/assets/clients/sew.png",
+  "industry": "Industrial Automation",
+  "challenge": "Quality assurance for industrial control systems across multiple platforms and configurations",
+  "solution": "Deployed AskUI CLI to orchestrate testing across Windows-based control systems and embedded devices",
+  "results": [
+    "95% increase in test coverage",
+    "60% reduction in testing costs",
+    "40% faster time-to-market",
+    "Improved product reliability by 85%"
+  ],
+  "metrics": {
+    "timeSaved": "60%",
+    "coverage": "95%",
+    "roi": "250%"
+  },
+  "quote": "The platform-agnostic approach of AskUI allowed us to test our systems comprehensively across all target environments.",
+  "author": "Anna Schmidt, Director of Product Quality",
+  "content": "SEW Eurodrive, a leading manufacturer of drive technology, needed a comprehensive testing solution for their industrial control systems.\n\n## The Challenge\n\nTesting industrial control systems across multiple platforms and configurations was a complex task. The company needed a solution that could handle diverse environments and provide consistent results.\n\n## The Solution\n\nAskUI CLI was deployed to orchestrate testing across Windows-based control systems and embedded devices. The platform's flexibility allowed SEW Eurodrive to test comprehensively across all target environments.\n\n## Results\n\nThe implementation delivered impressive results:\n\n- 95% increase in test coverage\n- 60% reduction in testing costs\n- 40% faster time-to-market\n- Improved product reliability by 85%\n\n## Impact\n\nSEW Eurodrive has significantly improved their product quality while reducing testing costs and time-to-market. The automation has enabled them to test more comprehensively than ever before.",
+  "featured": true
+}
+

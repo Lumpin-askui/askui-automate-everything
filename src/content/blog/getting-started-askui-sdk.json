@@ -1,0 +1,17 @@
+{
+  "id": "5",
+  "slug": "getting-started-with-askui-sdk",
+  "title": "Getting Started with AskUI SDK",
+  "excerpt": "Complete tutorial on building your first computer use agent with the AskUI Python SDK and connecting to devices.",
+  "content": "Get started with AskUI SDK in minutes. This tutorial will guide you through creating your first automation project.\n\n## Installation\n\nInstall the AskUI SDK using pip:\n\n```bash\npip install askui\n```\n\n## First Steps\n\n1. Create a new project\n2. Initialize AskUI\n3. Connect to a device\n4. Write your first automation\n\n## Example Code\n\n```python\nfrom askui import AskUI\n\nui = AskUI()\nui.connect_to_device()\nui.click('button')\n```\n\n## Next Steps\n\nExplore our documentation for more advanced features and examples.",
+  "category": "Tutorials",
+  "readTime": "10 min read",
+  "date": "2024-12-20",
+  "publishedAt": "2024-12-20T10:00:00Z",
+  "author": "Alex Rivera",
+  "authorRole": "Developer Advocate",
+  "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&h=400&fit=crop",
+  "tags": ["tutorials", "sdk", "getting-started", "python"],
+  "featured": false
+}
+

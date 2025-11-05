@@ -48,7 +48,7 @@ const Footer = () => {
               <li><a href="#" className="hover:text-accent transition-colors">API Reference</a></li>
               <li><a href="#" className="hover:text-accent transition-colors">Blog</a></li>
               <li><a href="#" className="hover:text-accent transition-colors">Case Studies</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Benchmarks</a></li>
+              <li><a href="/benchmarks" className="hover:text-accent transition-colors">Benchmarks</a></li>
             </ul>
           </div>
 
@@ -56,11 +56,11 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-sm text-white/70">
-              <li><a href="#" className="hover:text-accent transition-colors">About Us</a></li>
               <li><a href="#" className="hover:text-accent transition-colors">Careers</a></li>
               <li><a href="#" className="hover:text-accent transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms-of-service" className="hover:text-accent transition-colors">Terms of Service</a></li>
+              <li><a href="/imprint" className="hover:text-accent transition-colors">Imprint</a></li>
             </ul>
           </div>
         </div>

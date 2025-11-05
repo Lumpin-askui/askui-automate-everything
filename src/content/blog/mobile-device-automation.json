@@ -1,0 +1,17 @@
+{
+  "id": "8",
+  "slug": "mobile-device-automation-with-askui",
+  "title": "Mobile Device Automation with AskUI",
+  "excerpt": "Learn how to automate iOS and Android devices using AskUI Suite's advanced capabilities.",
+  "content": "Mobile device automation presents unique challenges. AskUI Suite makes it easy.\n\n## iOS Automation\n\nOur iOS automation capabilities provide comprehensive coverage for your testing needs.\n\n## Android Automation\n\nAndroid automation is equally powerful, with support for all major versions.\n\n## Best Practices\n\n1. Use device-specific optimizations\n2. Handle different screen sizes\n3. Account for platform differences\n4. Implement proper error handling\n\n## Real-World Examples\n\nSee how our customers are using mobile automation to improve their testing processes.",
+  "category": "Tutorials",
+  "readTime": "12 min read",
+  "date": "2024-12-05",
+  "publishedAt": "2024-12-05T09:00:00Z",
+  "author": "Lisa Park",
+  "authorRole": "Product Manager",
+  "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop",
+  "tags": ["mobile", "ios", "android", "tutorials"],
+  "featured": false
+}
+

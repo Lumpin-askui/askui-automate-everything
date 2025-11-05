@@ -1,123 +1,13 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, TrendingUp, Clock, CheckCircle } from "lucide-react";
-import dbLogo from "@/assets/clients/db.png";
-import sewLogo from "@/assets/clients/sew.png";
-import intelLogo from "@/assets/clients/intel.png";
-import zucchettiLogo from "@/assets/clients/zucchetti.png";
-import soluteLogo from "@/assets/clients/solute.png";
-
-const caseStudies = [
-  {
-    id: 1,
-    company: "Deutsche Bahn",
-    logo: dbLogo,
-    industry: "Transportation & Logistics",
-    challenge: "Complex HMI testing across railway infrastructure with multiple legacy systems",
-    solution: "Implemented AskUI Suite for automated testing of railway control systems and passenger information displays",
-    results: [
-      "80% reduction in manual testing time",
-      "95% test coverage across all HMI systems",
-      "50% faster deployment cycles",
-      "Zero critical bugs in production"
-    ],
-    metrics: {
-      timeSaved: "80%",
-      coverage: "95%",
-      roi: "300%"
-    },
-    quote: "AskUI has transformed how we approach testing in our railway infrastructure. The ability to automate complex HMI interactions has been game-changing.",
-    author: "Klaus Müller, Head of Quality Assurance"
-  },
-  {
-    id: 2,
-    company: "SEW Eurodrive",
-    logo: sewLogo,
-    industry: "Industrial Automation",
-    challenge: "Quality assurance for industrial control systems across multiple platforms and configurations",
-    solution: "Deployed AskUI CLI to orchestrate testing across Windows-based control systems and embedded devices",
-    results: [
-      "95% increase in test coverage",
-      "60% reduction in testing costs",
-      "40% faster time-to-market",
-      "Improved product reliability by 85%"
-    ],
-    metrics: {
-      timeSaved: "60%",
-      coverage: "95%",
-      roi: "250%"
-    },
-    quote: "The platform-agnostic approach of AskUI allowed us to test our systems comprehensively across all target environments.",
-    author: "Anna Schmidt, Director of Product Quality"
-  },
-  {
-    id: 3,
-    company: "Intel Software",
-    logo: intelLogo,
-    industry: "Technology & Software",
-    challenge: "Multi-platform SDK testing with complex integration scenarios and diverse environments",
-    solution: "Utilized AskUI SDK and CLI for automated testing across Windows, Linux, and MacOS platforms",
-    results: [
-      "70% faster release cycles",
-      "85% reduction in regression bugs",
-      "Automated 90% of integration tests",
-      "Improved developer productivity by 45%"
-    ],
-    metrics: {
-      timeSaved: "70%",
-      coverage: "90%",
-      roi: "400%"
-    },
-    quote: "AskUI's ability to automate complex interactions across multiple platforms has significantly accelerated our development velocity.",
-    author: "David Park, VP of Engineering"
-  },
-  {
-    id: 4,
-    company: "Zucchetti",
-    logo: zucchettiLogo,
-    industry: "Enterprise Software",
-    challenge: "Testing enterprise management software across diverse customer environments and configurations",
-    solution: "Implemented AskUI Caesr for non-technical QA team members and AskUI Suite for comprehensive testing",
-    results: [
-      "75% reduction in test execution time",
-      "Enabled non-technical testing",
-      "99.8% test accuracy rate",
-      "50% cost reduction in QA operations"
-    ],
-    metrics: {
-      timeSaved: "75%",
-      coverage: "98%",
-      roi: "280%"
-    },
-    quote: "The no-code interface has democratized testing in our organization. Our entire QA team is now empowered to create complex test scenarios.",
-    author: "Maria Rossi, QA Manager"
-  },
-  {
-    id: 5,
-    company: "Solute",
-    logo: soluteLogo,
-    industry: "E-commerce & Retail",
-    challenge: "Cross-browser and mobile app testing for e-commerce platform with rapid release cycles",
-    solution: "Deployed AskUI Cloud for scalable testing across web and mobile platforms",
-    results: [
-      "65% faster test execution",
-      "Parallel testing across 20+ devices",
-      "90% reduction in flaky tests",
-      "Continuous deployment achieved"
-    ],
-    metrics: {
-      timeSaved: "65%",
-      coverage: "92%",
-      roi: "320%"
-    },
-    quote: "AskUI's cloud infrastructure allows us to test at scale without managing complex device farms. It's been crucial for our CI/CD pipeline.",
-    author: "Thomas Weber, Head of DevOps"
-  }
-];
+import { cms } from "@/services/cms";
 
 const CaseStudies = () => {
+  const caseStudies = cms.getAllCaseStudies();
   return (
     <div className="min-h-screen">
       <Header />
@@ -235,9 +125,11 @@ const CaseStudies = () => {
                       </div>
                     </div>
 
-                    <Button variant="outline" className="w-full">
-                      Read Full Case Study
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                    <Button variant="outline" className="w-full" asChild>
+                      <Link to={`/case-studies/${study.slug}`}>
+                        Read Full Case Study
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </Button>
                   </div>
                 </div>

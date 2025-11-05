@@ -1,0 +1,25 @@
+{
+  "id": "5",
+  "slug": "solute",
+  "company": "Solute",
+  "logo": "/src/assets/clients/solute.png",
+  "industry": "E-commerce & Retail",
+  "challenge": "Cross-browser and mobile app testing for e-commerce platform with rapid release cycles",
+  "solution": "Deployed AskUI Cloud for scalable testing across web and mobile platforms",
+  "results": [
+    "65% faster test execution",
+    "Parallel testing across 20+ devices",
+    "90% reduction in flaky tests",
+    "Continuous deployment achieved"
+  ],
+  "metrics": {
+    "timeSaved": "65%",
+    "coverage": "92%",
+    "roi": "320%"
+  },
+  "quote": "AskUI's cloud infrastructure allows us to test at scale without managing complex device farms. It's been crucial for our CI/CD pipeline.",
+  "author": "Thomas Weber, Head of DevOps",
+  "content": "Solute, an e-commerce platform, needed a scalable testing solution for their rapid release cycles.\n\n## The Challenge\n\nTesting across multiple browsers and mobile devices with rapid release cycles required significant infrastructure and resources. The company needed a scalable solution that could handle their CI/CD pipeline.\n\n## The Solution\n\nSolute deployed AskUI Cloud for scalable testing across web and mobile platforms. The cloud infrastructure eliminated the need for managing complex device farms.\n\n## Results\n\nThe implementation delivered impressive results:\n\n- 65% faster test execution\n- Parallel testing across 20+ devices\n- 90% reduction in flaky tests\n- Continuous deployment achieved\n\n## Impact\n\nSolute has achieved continuous deployment while maintaining high quality standards. The cloud infrastructure has been crucial for their CI/CD pipeline, enabling them to test at scale without the overhead of managing device farms.",
+  "featured": false
+}
+

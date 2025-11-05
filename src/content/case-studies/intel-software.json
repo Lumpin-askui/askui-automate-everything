@@ -1,0 +1,25 @@
+{
+  "id": "3",
+  "slug": "intel-software",
+  "company": "Intel Software",
+  "logo": "/src/assets/clients/intel.png",
+  "industry": "Technology & Software",
+  "challenge": "Multi-platform SDK testing with complex integration scenarios and diverse environments",
+  "solution": "Utilized AskUI SDK and CLI for automated testing across Windows, Linux, and MacOS platforms",
+  "results": [
+    "70% faster release cycles",
+    "85% reduction in regression bugs",
+    "Automated 90% of integration tests",
+    "Improved developer productivity by 45%"
+  ],
+  "metrics": {
+    "timeSaved": "70%",
+    "coverage": "90%",
+    "roi": "400%"
+  },
+  "quote": "AskUI's ability to automate complex interactions across multiple platforms has significantly accelerated our development velocity.",
+  "author": "David Park, VP of Engineering",
+  "content": "Intel Software needed a comprehensive testing solution for their multi-platform SDK with complex integration scenarios.\n\n## The Challenge\n\nTesting SDKs across Windows, Linux, and MacOS with complex integration scenarios required significant time and resources. The company needed a solution that could handle diverse environments efficiently.\n\n## The Solution\n\nIntel Software utilized AskUI SDK and CLI for automated testing across all target platforms. The platform's cross-platform capabilities made it ideal for their needs.\n\n## Results\n\nThe implementation delivered outstanding results:\n\n- 70% faster release cycles\n- 85% reduction in regression bugs\n- Automated 90% of integration tests\n- Improved developer productivity by 45%\n\n## Impact\n\nIntel Software has significantly accelerated their development velocity while improving product quality. The automation has freed up developers to focus on feature development rather than manual testing.",
+  "featured": true
+}
+

@@ -1,0 +1,16 @@
+{
+  "id": "4",
+  "slug": "introducing-askui-cli-2-0",
+  "title": "Introducing AskUI CLI 2.0",
+  "excerpt": "Major update brings enhanced model support, improved orchestration, and new sandbox management capabilities.",
+  "content": "We're excited to announce AskUI CLI 2.0, a major update that brings significant improvements to our command-line interface.\n\n## Enhanced Model Support\n\nNew model integrations provide better accuracy and performance for your automation tasks.\n\n## Improved Orchestration\n\nOur orchestration engine has been completely redesigned for better reliability and performance.\n\n## Sandbox Management\n\nNew sandbox management features make it easier to manage your testing environments.\n\n## Migration Guide\n\nUpgrading is straightforward. Check our documentation for step-by-step instructions.",
+  "category": "Product Updates",
+  "readTime": "4 min read",
+  "date": "2024-12-28",
+  "publishedAt": "2024-12-28T12:00:00Z",
+  "author": "AskUI Team",
+  "image": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=400&fit=crop",
+  "tags": ["product-updates", "cli", "release"],
+  "featured": false
+}
+

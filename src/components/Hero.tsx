@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowRight, Terminal, MessageSquare } from "lucide-react";
+import { ArrowRight, Terminal, MessageSquare, BookOpen } from "lucide-react";
+import { cms } from "@/services/cms";
 import dbLogo from "@/assets/clients/db.png";
 import sewLogo from "@/assets/clients/sew.png";
 import zucchettiLogo from "@/assets/clients/zucchetti.png";
@@ -26,9 +28,9 @@ const Hero = () => {
           <div className="mx-auto max-w-6xl">
             {/* Tagline */}
             <div className="text-center mb-16">
-              <div className="mb-6 inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+              <Link to="/benchmarks" className="mb-6 inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-medium text-accent hover:bg-accent/20 transition-colors cursor-pointer">
                 #1 in Android World & OSWorld Benchmarks
-              </div>
+              </Link>
               
               <h1 className="mb-12 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
                 Production-Ready
@@ -66,22 +68,15 @@ const Hero = () => {
                     <pre className="font-mono text-sm text-white/90 leading-relaxed">
                       <code>{`$ askui-cli run ./tasks --devices playwright://chrome
 
-AskUI CLI runs task
+1️⃣ Connect test suite (source file)
+   ✓ ./tasks/test-login-flow.txt
 
-Conversion-ID: a3f4b2c1-9d8e-4a2f-b1c3-d4e5f6a7b8c9
-Chat API: http://localhost:8080/chat
+2️⃣ Select environment
+   ✓ playwright://chrome
+   (Also: Windows VM, Android, iOS, MacOS, Linux)
 
-We are now starting to Execute:
-✓ Connecting to Chrome browser
-✓ Loading task: test-login-flow.txt
-✓ Vision model initialized
-✓ Executing automation steps...
-  → Navigate to login page
-  → Enter credentials
-  → Click login button
-✓ Task completed successfully
-
-Results: ./output/test-results.json`}</code>
+3️⃣ Report generated (target folder)
+   ✓ ./output/test-results.json`}</code>
                     </pre>
                   </div>
                 </TabsContent>
@@ -94,7 +89,7 @@ Results: ./output/test-results.json`}</code>
                           You
                         </div>
                         <div className="bg-white/10 rounded-2xl rounded-tl-sm p-4 text-white max-w-md">
-                          Automate testing our app on all platforms
+                          Test our login flow on all devices
                         </div>
                       </div>
                       
@@ -103,26 +98,40 @@ Results: ./output/test-results.json`}</code>
                           <span className="text-primary font-bold text-sm">AI</span>
                         </div>
                         <div className="bg-white rounded-2xl rounded-tl-sm p-5 flex-1 shadow-sm text-primary">
-                          <p className="mb-4 font-medium">I can help you automate across all platforms. Which would you like to start with?</p>
-                          <div className="grid grid-cols-2 gap-2">
-                            <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left text-foreground">
-                              🪟 Windows
-                            </button>
-                            <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left text-foreground">
-                              🍎 MacOS
-                            </button>
-                            <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left text-foreground">
-                              🌐 Web
-                            </button>
-                            <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left text-foreground">
-                              🤖 Android
-                            </button>
-                            <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left text-foreground">
-                              🐧 Linux
-                            </button>
-                            <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left text-foreground">
-                              📱 iOS
-                            </button>
+                          <div className="space-y-4">
+                            <div>
+                              <p className="font-semibold text-sm text-muted-foreground mb-1">1️⃣ I understand your test</p>
+                              <p className="text-sm">✓ Login flow test suite loaded</p>
+                            </div>
+                            
+                            <div>
+                              <p className="font-semibold text-sm text-muted-foreground mb-2">2️⃣ Where should I run it?</p>
+                              <div className="grid grid-cols-3 gap-2">
+                                <button className="px-3 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-xs font-medium text-left text-foreground">
+                                  🪟 Windows
+                                </button>
+                                <button className="px-3 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-xs font-medium text-left text-foreground">
+                                  📱 iOS
+                                </button>
+                                <button className="px-3 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-xs font-medium text-left text-foreground">
+                                  🤖 Android
+                                </button>
+                                <button className="px-3 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-xs font-medium text-left text-foreground">
+                                  🍎 MacOS
+                                </button>
+                                <button className="px-3 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-xs font-medium text-left text-foreground">
+                                  🌐 Web
+                                </button>
+                                <button className="px-3 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-xs font-medium text-left text-foreground">
+                                  🐧 Linux
+                                </button>
+                              </div>
+                            </div>
+                            
+                            <div className="pt-2 border-t border-border/50">
+                              <p className="font-semibold text-sm text-muted-foreground mb-1">3️⃣ Results ready</p>
+                              <p className="text-sm">✓ Test report generated and saved</p>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -161,18 +170,42 @@ Results: ./output/test-results.json`}</code>
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center max-w-5xl mx-auto">
-            {customers.map((customer, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center"
-              >
-                <img
-                  src={customer.logo}
-                  alt={customer.name}
-                  className="h-8 md:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
-                />
-              </div>
-            ))}
+            {(() => {
+              const caseStudies = cms.getAllCaseStudies();
+              const companyToCaseStudy = new Map(
+                caseStudies.map(study => [study.company, study.slug])
+              );
+
+              return customers.map((customer, index) => {
+                const caseStudySlug = companyToCaseStudy.get(customer.name);
+                const hasCaseStudy = !!caseStudySlug;
+
+                const content = (
+                  <div className="relative flex items-center justify-center group cursor-pointer">
+                    <img
+                      src={customer.logo}
+                      alt={customer.name}
+                      className="h-8 md:h-10 w-auto object-contain opacity-50 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
+                    />
+                    {hasCaseStudy && (
+                      <div className="absolute -top-1 -right-1 bg-accent text-primary rounded-full p-1 shadow-lg group-hover:scale-110 transition-transform">
+                        <BookOpen className="h-2.5 w-2.5 md:h-3 md:w-3" />
+                      </div>
+                    )}
+                  </div>
+                );
+
+                return hasCaseStudy ? (
+                  <Link key={index} to={`/case-studies/${caseStudySlug}`} className="block">
+                    {content}
+                  </Link>
+                ) : (
+                  <div key={index}>
+                    {content}
+                  </div>
+                );
+              });
+            })()}
           </div>
         </div>
       </section>

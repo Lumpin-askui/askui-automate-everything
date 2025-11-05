@@ -1,0 +1,25 @@
+{
+  "id": "1",
+  "slug": "deutsche-bahn",
+  "company": "Deutsche Bahn",
+  "logo": "/src/assets/clients/db.png",
+  "industry": "Transportation & Logistics",
+  "challenge": "Complex HMI testing across railway infrastructure with multiple legacy systems",
+  "solution": "Implemented AskUI Suite for automated testing of railway control systems and passenger information displays",
+  "results": [
+    "80% reduction in manual testing time",
+    "95% test coverage across all HMI systems",
+    "50% faster deployment cycles",
+    "Zero critical bugs in production"
+  ],
+  "metrics": {
+    "timeSaved": "80%",
+    "coverage": "95%",
+    "roi": "300%"
+  },
+  "quote": "AskUI has transformed how we approach testing in our railway infrastructure. The ability to automate complex HMI interactions has been game-changing.",
+  "author": "Klaus Müller, Head of Quality Assurance",
+  "content": "Deutsche Bahn, one of Europe's largest railway companies, faced significant challenges in testing their complex Human-Machine Interface (HMI) systems across their extensive railway infrastructure.\n\n## The Challenge\n\nWith multiple legacy systems and diverse hardware configurations, manual testing was time-consuming and error-prone. The company needed a solution that could handle complex interactions across different platforms and systems.\n\n## The Solution\n\nAskUI Suite was implemented to automate testing of railway control systems and passenger information displays. The platform's ability to work across different systems and configurations made it ideal for Deutsche Bahn's needs.\n\n## Results\n\nThe implementation resulted in significant improvements:\n\n- 80% reduction in manual testing time\n- 95% test coverage across all HMI systems\n- 50% faster deployment cycles\n- Zero critical bugs in production\n\n## Impact\n\nDeutsche Bahn has been able to accelerate their testing processes while maintaining high quality standards. The automation has freed up their QA team to focus on more strategic testing initiatives.",
+  "featured": true
+}
+
