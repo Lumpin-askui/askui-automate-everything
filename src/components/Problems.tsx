@@ -57,8 +57,8 @@ const Problems = () => {
           {problems.map((item, index) => (
             <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border-border/50 bg-card">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <item.icon className="h-6 w-6 text-primary" />
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-[#962C5D]/10 flex items-center justify-center">
+                  <item.icon className="h-6 w-6 text-[#962C5D]" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold mb-2">{item.title}</h3>

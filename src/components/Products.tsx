@@ -62,8 +62,8 @@ const Products = () => {
           {products.slice(0, 2).map((product, index) => (
             <Card key={index} className="p-8 hover:shadow-xl transition-all duration-300 border-border/50 bg-card group">
               <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                  <product.icon className="h-7 w-7 text-primary" />
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#962C5D]/10 flex items-center justify-center group-hover:bg-[#962C5D]/15 transition-colors">
+                  <product.icon className="h-7 w-7 text-[#962C5D]" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold mb-1">{product.name}</h3>
@@ -94,8 +94,8 @@ const Products = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {products.slice(2).map((product, index) => (
             <Card key={index} className="p-6 hover:shadow-xl transition-all duration-300 border-border/50 bg-card group">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors mb-4">
-                <product.icon className="h-6 w-6 text-primary" />
+              <div className="w-12 h-12 rounded-xl bg-[#962C5D]/10 flex items-center justify-center group-hover:bg-[#962C5D]/15 transition-colors mb-4">
+                <product.icon className="h-6 w-6 text-[#962C5D]" />
               </div>
               
               <h3 className="text-xl font-bold mb-1">{product.name}</h3>
