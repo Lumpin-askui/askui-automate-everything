@@ -56,7 +56,7 @@ const Hero = () => {
                 </TabsList>
 
                 <TabsContent value="cli" className="mt-0">
-                  <div className="rounded-xl border border-white/20 bg-[#1e1e1e] p-6 text-left overflow-x-auto shadow-lg">
+                  <div className="rounded-xl border border-white/20 bg-[#1e1e1e] p-6 text-left overflow-x-auto shadow-lg max-w-4xl mx-auto">
                     <div className="flex items-center gap-2 mb-4 text-white/60 text-xs">
                       <div className="w-3 h-3 rounded-full bg-red-500"></div>
                       <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -87,7 +87,7 @@ Results: ./output/test-results.json`}</code>
                 </TabsContent>
 
                 <TabsContent value="chat" className="mt-0">
-                  <div className="rounded-xl border border-white/20 bg-white/5 backdrop-blur p-8 shadow-lg max-w-3xl mx-auto">
+                  <div className="rounded-xl border border-white/20 bg-white/5 backdrop-blur p-8 shadow-lg max-w-4xl mx-auto">
                     <div className="space-y-4">
                       <div className="flex items-start gap-3">
                         <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 font-semibold text-white">
