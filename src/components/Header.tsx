@@ -9,11 +9,18 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import askuiLogo from "@/assets/askui-logo.svg";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -130,12 +137,56 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden py-4 space-y-4 border-t border-border/40 mt-4">
-            <a href="#products" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Products
-            </a>
-            <a href="#solutions" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Solutions
-            </a>
+            <Collapsible open={productsOpen} onOpenChange={setProductsOpen}>
+              <CollapsibleTrigger className="flex items-center justify-between w-full text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Products
+                <ChevronDown className={`h-4 w-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="mt-2 space-y-2 pl-4">
+                <a href="#products" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <div className="font-semibold mb-0.5">AskUI Caesr</div>
+                  <div className="text-xs">Chat interface for automation</div>
+                </a>
+                <a href="#products" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <div className="font-semibold mb-0.5">AskUI CLI</div>
+                  <div className="text-xs">Command-line orchestration</div>
+                </a>
+                <a href="#products" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <div className="font-semibold mb-0.5">AskUI Suite</div>
+                  <div className="text-xs">Universal device infrastructure</div>
+                </a>
+                <a href="#products" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <div className="font-semibold mb-0.5">AskUI SDK</div>
+                  <div className="text-xs">Open source developer library</div>
+                </a>
+                <a href="#products" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <div className="font-semibold mb-0.5">AskUI Cloud</div>
+                  <div className="text-xs">Hosted inference</div>
+                </a>
+              </CollapsibleContent>
+            </Collapsible>
+
+            <Collapsible open={solutionsOpen} onOpenChange={setSolutionsOpen}>
+              <CollapsibleTrigger className="flex items-center justify-between w-full text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Solutions
+                <ChevronDown className={`h-4 w-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="mt-2 space-y-2 pl-4">
+                <a href="#solutions" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <div className="font-semibold mb-0.5">Software Testing & Infrastructure Teams</div>
+                  <div className="text-xs">Automated testing and quality assurance at scale</div>
+                </a>
+                <a href="#solutions" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <div className="font-semibold mb-0.5">Automation Teams</div>
+                  <div className="text-xs">RPA and workflow automation solutions</div>
+                </a>
+                <a href="#solutions" className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <div className="font-semibold mb-0.5">Agent Startups</div>
+                  <div className="text-xs">Infrastructure for building AI agent products</div>
+                </a>
+              </CollapsibleContent>
+            </Collapsible>
+
             <Link to="/case-studies" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Customers
             </Link>
