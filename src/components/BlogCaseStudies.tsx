@@ -55,9 +55,11 @@ const BlogCaseStudies = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-2">Latest from Our Blog</h2>
               <p className="text-muted-foreground">Insights, tutorials, and updates</p>
             </div>
-            <Button variant="outline" className="hidden md:flex">
-              View All Posts
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <Button variant="outline" className="hidden md:flex" asChild>
+              <a href="/blog">
+                View All Posts
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </Button>
           </div>
 
@@ -84,9 +86,11 @@ const BlogCaseStudies = () => {
             ))}
           </div>
 
-          <Button variant="outline" className="md:hidden w-full mt-6">
-            View All Posts
-            <ArrowRight className="ml-2 h-4 w-4" />
+          <Button variant="outline" className="md:hidden w-full mt-6" asChild>
+            <a href="/blog">
+              View All Posts
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
           </Button>
         </div>
 
@@ -97,9 +101,11 @@ const BlogCaseStudies = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-2">Customer Success Stories</h2>
               <p className="text-muted-foreground">See how enterprises use AskUI</p>
             </div>
-            <Button variant="outline" className="hidden md:flex">
-              All Case Studies
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <Button variant="outline" className="hidden md:flex" asChild>
+              <a href="/case-studies">
+                All Case Studies
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </Button>
           </div>
 
@@ -127,9 +133,11 @@ const BlogCaseStudies = () => {
             ))}
           </div>
 
-          <Button variant="outline" className="lg:hidden w-full mt-6">
-            All Case Studies
-            <ArrowRight className="ml-2 h-4 w-4" />
+          <Button variant="outline" className="lg:hidden w-full mt-6" asChild>
+            <a href="/case-studies">
+              All Case Studies
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
           </Button>
         </div>
       </div>

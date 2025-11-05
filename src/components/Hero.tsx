@@ -13,22 +13,26 @@ const Hero = () => {
           </div>
           
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            Enterprise-Ready
+            Production-Ready
             <span className="block text-accent">Computer Use Agents</span>
+            <span className="block text-2xl md:text-3xl lg:text-4xl font-normal text-white/90 mt-4">
+              Across All Platforms
+            </span>
           </h1>
           
           <p className="mb-10 text-lg text-white/80 md:text-xl max-w-2xl mx-auto">
-            Make AI agents work across Windows, MacOS, Linux, iOS, and Android. Production-ready infrastructure for computer use models with enterprise security and reliability.
+            Deploy AI agents on Windows, MacOS, Linux, iOS, and Android with enterprise-grade security, reliability, and compliance.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary font-semibold shadow-glow">
-              Get Started
-              <ArrowRight className="ml-2 h-4 w-4" />
+            <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary font-semibold shadow-glow" asChild>
+              <a href="#contact">Book a Demo</a>
             </Button>
-            <Button size="lg" variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/10 backdrop-blur-sm">
-              <Github className="mr-2 h-4 w-4" />
-              View on GitHub
+            <Button size="lg" variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/10 backdrop-blur-sm" asChild>
+              <a href="https://github.com/askui/vision-agent" target="_blank" rel="noopener noreferrer">
+                <Github className="mr-2 h-4 w-4" />
+                View on GitHub
+              </a>
             </Button>
           </div>
 

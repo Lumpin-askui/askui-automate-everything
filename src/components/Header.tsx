@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import askuiLogo from "@/assets/askui-logo.svg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,24 +26,89 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:gap-8">
-            <a href="#products" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Products
-            </a>
-            <a href="#solutions" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Solutions
-            </a>
+          <div className="hidden md:flex md:items-center md:gap-6">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium bg-transparent">Products</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="w-[400px] p-4 bg-background">
+                      <div className="space-y-3">
+                        <NavigationMenuLink asChild>
+                          <a href="#products" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                            <div className="font-semibold mb-1">AskUI Caesr</div>
+                            <div className="text-sm text-muted-foreground">Chat interface for automation</div>
+                          </a>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <a href="#products" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                            <div className="font-semibold mb-1">AskUI CLI</div>
+                            <div className="text-sm text-muted-foreground">Command-line orchestration</div>
+                          </a>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <a href="#products" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                            <div className="font-semibold mb-1">AskUI Suite</div>
+                            <div className="text-sm text-muted-foreground">Universal device infrastructure</div>
+                          </a>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <a href="#products" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                            <div className="font-semibold mb-1">AskUI SDK</div>
+                            <div className="text-sm text-muted-foreground">Open source developer library</div>
+                          </a>
+                        </NavigationMenuLink>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium bg-transparent">Solutions</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="w-[400px] p-4 bg-background">
+                      <div className="space-y-3">
+                        <NavigationMenuLink asChild>
+                          <a href="#solutions" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                            <div className="font-semibold mb-1">Test Automation</div>
+                            <div className="text-sm text-muted-foreground">Automated testing across platforms</div>
+                          </a>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <a href="#solutions" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                            <div className="font-semibold mb-1">RPA & Workflow Automation</div>
+                            <div className="text-sm text-muted-foreground">Business process automation</div>
+                          </a>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <a href="#solutions" className="block p-3 rounded-md hover:bg-accent/10 transition-colors">
+                            <div className="font-semibold mb-1">Cross-Platform Testing</div>
+                            <div className="text-sm text-muted-foreground">Windows, Mac, Linux, iOS, Android</div>
+                          </a>
+                        </NavigationMenuLink>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            
             <a href="#customers" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Customers
             </a>
-            <a href="#blog" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            <Link to="/blog" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Blog
-            </a>
-            <a href="#docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            </Link>
+            <a href="https://docs.askui.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Docs
             </a>
+            <Link to="/enterprise">
+              <Button variant="outline" size="sm">
+                Enterprise
+              </Button>
+            </Link>
             <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90 text-accent">
-              Get Started
+              Book Demo
             </Button>
           </div>
 
@@ -49,7 +123,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-4">
+          <div className="md:hidden py-4 space-y-4 border-t border-border/40 mt-4">
             <a href="#products" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Products
             </a>
@@ -59,14 +133,19 @@ const Header = () => {
             <a href="#customers" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Customers
             </a>
-            <a href="#blog" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            <Link to="/blog" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Blog
-            </a>
-            <a href="#docs" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            </Link>
+            <a href="https://docs.askui.com" target="_blank" rel="noopener noreferrer" className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Docs
             </a>
+            <Link to="/enterprise" className="block">
+              <Button variant="outline" size="sm" className="w-full">
+                Enterprise
+              </Button>
+            </Link>
             <Button variant="default" size="sm" className="w-full bg-primary hover:bg-primary/90 text-accent">
-              Get Started
+              Book Demo
             </Button>
           </div>
         )}
