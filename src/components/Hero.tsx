@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight, Github, Terminal, MessageSquare } from "lucide-react";
-import heroDevices from "@/assets/hero-devices.png";
 
 const Hero = () => {
   return (
@@ -44,41 +43,31 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* Hero Image Section */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <img 
-              src={heroDevices} 
-              alt="AskUI across multiple platforms - desktop, mobile, tablet, smartwatch, and automotive"
-              className="w-full rounded-lg shadow-2xl"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Interactive Demos Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-primary via-primary to-primary/90">
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
               Built for Developers & Business Users
             </h2>
+            <p className="text-muted-foreground text-center mb-12 text-lg">
+              Choose your interface: CLI for technical teams or Chat for everyone
+            </p>
             
             <Tabs defaultValue="chat" className="w-full">
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 bg-white/5 border border-white/10 mb-8">
-                <TabsTrigger value="cli" className="data-[state=active]:bg-accent data-[state=active]:text-primary">
+              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+                <TabsTrigger value="cli">
                   <Terminal className="mr-2 h-4 w-4" />
                   CLI for Developers
                 </TabsTrigger>
-                <TabsTrigger value="chat" className="data-[state=active]:bg-accent data-[state=active]:text-primary">
+                <TabsTrigger value="chat">
                   <MessageSquare className="mr-2 h-4 w-4" />
                   Chat for Teams
                 </TabsTrigger>
               </TabsList>
 
               <TabsContent value="cli" className="mt-0">
-                <div className="rounded-xl border border-white/20 bg-[#1e1e1e] p-6 text-left overflow-x-auto shadow-2xl">
+                <div className="rounded-xl border border-border bg-[#1e1e1e] p-6 text-left overflow-x-auto shadow-lg">
                   <div className="flex items-center gap-2 mb-4 text-white/60 text-xs">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
                     <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -106,74 +95,92 @@ We are now starting to Execute:
 Results: ./output/test-results.json`}</code>
                   </pre>
                 </div>
-                <p className="text-white/70 text-center mt-6 text-base">
+                <p className="text-muted-foreground text-center mt-6 text-base">
                   Configure models, devices, and tools via command line. Perfect for CI/CD pipelines.
                 </p>
               </TabsContent>
 
               <TabsContent value="chat" className="mt-0">
-                <div className="rounded-xl border border-white/20 bg-gradient-to-br from-primary/40 to-primary/60 p-8 backdrop-blur shadow-2xl">
-                  <div className="space-y-6 max-w-2xl mx-auto">
+                <div className="rounded-xl border border-border bg-background p-8 shadow-lg max-w-3xl mx-auto">
+                  <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-full bg-accent/30 flex items-center justify-center flex-shrink-0 border-2 border-accent/50">
-                        <span className="text-accent font-semibold text-sm">You</span>
+                      <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
+                        <span className="font-semibold text-sm">You</span>
                       </div>
-                      <div className="bg-white/10 rounded-2xl rounded-tl-sm p-4 text-white text-base max-w-md backdrop-blur">
-                        Test the login flow on our production app
+                      <div className="bg-muted rounded-2xl rounded-tl-sm p-4 text-foreground max-w-md">
+                        Automate testing our app on all platforms
                       </div>
                     </div>
                     
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
                         <span className="text-primary font-bold text-sm">AI</span>
                       </div>
-                      <div className="bg-white rounded-2xl rounded-tl-sm p-5 text-primary text-base flex-1 shadow-lg">
-                        <p className="mb-3 font-medium">I&apos;ll test the login flow for you. Let me:</p>
-                        <ul className="space-y-2 text-sm mb-3">
-                          <li className="flex items-center gap-2">
-                            <span className="text-green-600">✓</span>
-                            Navigate to the login page
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="text-green-600">✓</span>
-                            Enter test credentials
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="text-green-600">✓</span>
-                            Verify successful authentication
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="text-green-600">✓</span>
-                            Check dashboard loads correctly
-                          </li>
-                        </ul>
-                        <p className="text-green-600 font-semibold flex items-center gap-2">
-                          <span className="text-lg">✓</span>
-                          Test completed - All checks passed!
-                        </p>
+                      <div className="bg-card border border-border rounded-2xl rounded-tl-sm p-5 flex-1 shadow-sm">
+                        <p className="mb-4 font-medium">I can help you automate across all platforms. Which would you like to start with?</p>
+                        <div className="grid grid-cols-2 gap-2">
+                          <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left">
+                            🪟 Windows
+                          </button>
+                          <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left">
+                            🍎 MacOS
+                          </button>
+                          <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left">
+                            🌐 Web
+                          </button>
+                          <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left">
+                            🤖 Android
+                          </button>
+                          <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left">
+                            🐧 Linux
+                          </button>
+                          <button className="px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium text-left">
+                            📱 iOS
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <p className="text-white/70 text-center mt-6 text-base">
-                  Natural language interface for non-technical users. No coding required.
+                <p className="text-muted-foreground text-center mt-6 text-base">
+                  Natural language interface for non-technical users. Automate across all platforms with no coding required.
                 </p>
               </TabsContent>
             </Tabs>
+
+            {/* CTA Section */}
+            <div className="mt-16 text-center">
+              <div className="inline-flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Button size="lg" asChild>
+                  <a href="/enterprise">
+                    Get Started Free
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <a href="#contact">
+                    Talk to Sales
+                  </a>
+                </Button>
+              </div>
+              <p className="text-muted-foreground text-sm mt-4">
+                No credit card required • Free tier available • Enterprise support
+              </p>
+            </div>
 
             {/* Stats */}
             <div className="mt-20 grid grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl md:text-5xl font-bold text-accent mb-2">5+</div>
-                <div className="text-sm md:text-base text-white/70">Platforms</div>
+                <div className="text-sm md:text-base text-muted-foreground">Platforms</div>
               </div>
               <div>
                 <div className="text-4xl md:text-5xl font-bold text-accent mb-2">ISO27001</div>
-                <div className="text-sm md:text-base text-white/70">Certified</div>
+                <div className="text-sm md:text-base text-muted-foreground">Certified</div>
               </div>
               <div>
                 <div className="text-4xl md:text-5xl font-bold text-accent mb-2">#1</div>
-                <div className="text-sm md:text-base text-white/70">Android Benchmark</div>
+                <div className="text-sm md:text-base text-muted-foreground">Android Benchmark</div>
               </div>
             </div>
           </div>
