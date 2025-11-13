@@ -18,6 +18,7 @@ import SoftwareTesting from "./pages/SoftwareTesting";
 import AutomationTeams from "./pages/AutomationTeams";
 import AgentStartups from "./pages/AgentStartups";
 import RoiCalculator from "./pages/RoiCalculator";
+import AgileTestingDaysEvent from "./pages/AgileTestingDaysEvent";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/solutions/automation-teams" element={<AutomationTeams />} />
           <Route path="/solutions/agent-startups" element={<AgentStartups />} />
           <Route path="/roi-calculator" element={<RoiCalculator />} />
+          <Route path="/event/agile-testing-days" element={<AgileTestingDaysEvent />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
