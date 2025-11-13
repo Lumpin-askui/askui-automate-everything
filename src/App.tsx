@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import SoftwareTesting from "./pages/SoftwareTesting";
 import AutomationTeams from "./pages/AutomationTeams";
 import AgentStartups from "./pages/AgentStartups";
+import RoiCalculator from "./pages/RoiCalculator";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/solutions/software-testing" element={<SoftwareTesting />} />
           <Route path="/solutions/automation-teams" element={<AutomationTeams />} />
           <Route path="/solutions/agent-startups" element={<AgentStartups />} />
+          <Route path="/roi-calculator" element={<RoiCalculator />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
