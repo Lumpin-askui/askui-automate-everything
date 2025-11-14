@@ -13,16 +13,34 @@ const Footer = () => {
               Enterprise-ready computer use agent infrastructure for Windows, MacOS, Linux, iOS, and Android.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+              <a
+                href="https://github.com/askui"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
                 <Github className="h-4 w-4" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+              <a
+                href="https://x.com/ask_ui"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
                 <Twitter className="h-4 w-4" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+              <a
+                href="https://www.linkedin.com/company/askui/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
                 <Linkedin className="h-4 w-4" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+              <a
+                href="mailto:sales@askui.com"
+                className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
                 <Mail className="h-4 w-4" />
               </a>
             </div>
@@ -67,7 +85,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
-            <p>© 2024 AskUI. All rights reserved.</p>
+            <p>© 2025 AskUI. All rights reserved.</p>
             <div className="flex gap-6">
               <span>ISO27001 Certified</span>
             </div>
