@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MessageCircle, Send, Paperclip, CheckCircle, User, Mail, Bot } from "lucide-react";
 
+const ZAPIER_WEBHOOK_URL = import.meta.env.VITE_ZAPIER_WEBHOOK_URL || "https://hooks.zapier.com/hooks/catch/15603221/u8w6lhe/";
+
 const AgileTestingDaysEvent = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -67,23 +69,29 @@ const AgileTestingDaysEvent = () => {
     setIsSubmitting(true);
 
     try {
-      // TODO: Replace with actual API endpoint to document submissions
-      // For now, we'll just simulate a submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      // In production, this would be:
-      // await fetch('/api/event-submissions', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ 
-      //     firstName: firstName.trim(),
-      //     lastName: lastName.trim(),
-      //     email: email.trim(),
-      //     answer: submission.trim(),
-      //     event: 'agile-testing-days-2025',
-      //     timestamp: new Date().toISOString()
-      //   })
-      // });
+      const payload = {
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        email: email.trim(),
+        answer: submission.trim(),
+        agent: selectedAgent,
+        event: "agile-testing-days-2025",
+        timestamp: new Date().toISOString(),
+      };
+
+      const formData = new FormData();
+      Object.entries(payload).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
+      const response = await fetch(ZAPIER_WEBHOOK_URL, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok && response.type !== "opaque") {
+        throw new Error(`Zapier webhook returned status ${response.status}`);
+      }
 
       setIsSubmitted(true);
       setSubmission("");
