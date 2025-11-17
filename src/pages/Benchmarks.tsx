@@ -46,7 +46,7 @@ const Benchmarks = () => {
               </a>
               <span className="text-white/40">•</span>
               <Link 
-                to="/blog/askui-vision-agent-achieves-2nd-place-on-androidworld-benchmark"
+                to="/blog-posts/askui-vision-agent-achieves-2nd-place-on-androidworld-benchmark"
                 className="text-white/90 hover:text-white underline underline-offset-4 transition-colors"
               >
                 Read Analysis →
@@ -156,7 +156,7 @@ const Benchmarks = () => {
               <h2 className="text-3xl font-bold mb-8 text-center">Deep Dives & Analysis</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {benchmarkPosts.map((post) => (
-                  <Link key={post.id} to={`/blog/${post.slug}`}>
+                  <Link key={post.id} to={`/blog-posts/${post.slug}`}>
                     <Card className="p-6 hover:shadow-lg transition-all duration-300 border-border/50 group cursor-pointer h-full">
                       <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
                         <Award className="h-4 w-4 text-[#962C5D]" />

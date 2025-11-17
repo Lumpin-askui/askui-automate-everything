@@ -133,7 +133,7 @@ const BlogPost = () => {
                 .map((relatedPost) => (
                   <Link
                     key={relatedPost.id}
-                    to={`/blog/${relatedPost.slug}`}
+                    to={`/blog-posts/${relatedPost.slug}`}
                     className="block p-6 rounded-lg border border-border hover:shadow-lg transition-all"
                   >
                     <h3 className="font-semibold mb-2 hover:text-[#962C5D] transition-colors">

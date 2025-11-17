@@ -27,7 +27,7 @@ const BlogCaseStudies = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredBlogPosts.map((post) => (
-              <Link key={post.id} to={`/blog/${post.slug}`}>
+              <Link key={post.id} to={`/blog-posts/${post.slug}`}>
                 <Card className="p-6 hover:shadow-lg transition-all duration-300 border-border/50 bg-card group cursor-pointer h-full">
                   <div className="mb-4">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">

@@ -168,7 +168,7 @@ const Blog = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {paginatedPosts.map((post) => (
-                  <Link key={post.id} to={`/blog/${post.slug}`}>
+                  <Link key={post.id} to={`/blog-posts/${post.slug}`}>
                     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 group cursor-pointer h-full">
                       <div className="aspect-video overflow-hidden">
                         <img 
