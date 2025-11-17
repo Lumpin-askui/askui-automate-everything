@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,12 +7,30 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calculator, Users, DollarSign, TrendingUp, Zap, Shield, Info } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
+import { Calculator, Users, DollarSign, TrendingUp, Zap, Shield, Info, Lock, CheckCircle, Mail } from "lucide-react";
+
+const ROI_WEBHOOK_URL = import.meta.env.VITE_ROI_WEBHOOK_URL || "https://hooks.zapier.com/hooks/catch/15603221/u8w6lhe/";
 
 const RoiCalculator = () => {
+  const { toast } = useToast();
+  
   // Fixed AskUI capabilities (not user-editable)
   const ASKUI_REDUCTION_PERCENT = 70; // AskUI can automate 70% of manual regression testing
   const ASKUI_BUG_REDUCTION_PERCENT = 60; // AskUI can reduce production bugs by 60%
+
+  // Lead Capture State
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    phone: "",
+  });
 
   // FTE Cost Savings State
   const [qaSalary, setQaSalary] = useState(100000);
@@ -44,6 +62,109 @@ const RoiCalculator = () => {
 
   // Total ROI
   const totalROI = annualCostSavings + valueRecouped + bugAvoidance;
+
+  // Format ROI for sneak peek (show first few digits)
+  const formatSneakPeek = (value: number) => {
+    const formatted = value.toLocaleString('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    const firstDigit = formatted[0];
+    const length = formatted.length;
+    return `${firstDigit}${'X'.repeat(Math.max(0, length - 2))},XXX+`;
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.email.trim()) {
+      alert("Please fill in all required fields (First Name, Last Name, Email).");
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim(),
+        company: formData.company.trim() || "Not provided",
+        phone: formData.phone.trim() || "Not provided",
+        totalROI: totalROI,
+        annualCostSavings: annualCostSavings,
+        valueRecouped: valueRecouped,
+        bugAvoidance: bugAvoidance,
+        qaSalary: qaSalary,
+        qaCount: qaCount,
+        regressionPercent: regressionPercent,
+        devSalary: devSalary,
+        deploymentsPerYear: deploymentsPerYear,
+        manualTestHoursPerDeployment: manualTestHoursPerDeployment,
+        devTeamSize: devTeamSize,
+        avgBugCost: avgBugCost,
+        bugsMonthly: bugsMonthly,
+        source: "roi-calculator",
+        timestamp: new Date().toISOString(),
+      };
+
+      const formDataPayload = new FormData();
+      Object.entries(payload).forEach(([key, value]) => {
+        formDataPayload.append(key, String(value));
+      });
+
+      const response = await fetch(ROI_WEBHOOK_URL, {
+        method: "POST",
+        body: formDataPayload,
+      });
+
+      if (!response.ok && response.type !== "opaque") {
+        throw new Error(`Webhook returned status ${response.status}`);
+      }
+
+      setIsSubmitted(true);
+      setIsFormOpen(false);
+      
+      // Store in localStorage so results stay visible
+      localStorage.setItem('roi_calculator_submitted', 'true');
+      
+      // Show success toast
+      toast({
+        title: "Report Requested Successfully!",
+        description: `Your personalized ROI report will be sent to ${formData.email}. Check your inbox shortly.`,
+      });
+      
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        phone: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("There was an error submitting your request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Check localStorage on mount
+  useEffect(() => {
+    const submitted = localStorage.getItem('roi_calculator_submitted');
+    if (submitted === 'true') {
+      setIsSubmitted(true);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -206,7 +327,7 @@ const RoiCalculator = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-primary/5 border-primary/20">
+                  <Card className="bg-primary/5 border-primary/20 relative">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <TrendingUp className="h-5 w-5 text-primary" />
@@ -217,7 +338,21 @@ const RoiCalculator = () => {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                      <div className="p-6 rounded-lg bg-background border border-border">
+                      {!isSubmitted && (
+                        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm z-10 rounded-lg flex items-center justify-center">
+                          <div className="text-center p-6">
+                            <Lock className="h-8 w-8 text-primary mx-auto mb-4" />
+                            <p className="text-sm font-semibold mb-2">Unlock Your Full ROI Report</p>
+                            <p className="text-xs text-muted-foreground mb-4">
+                              Get detailed breakdowns and personalized recommendations
+                            </p>
+                            <Button onClick={() => setIsFormOpen(true)} className="w-full">
+                              Get My Full Report
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                      <div className={`p-6 rounded-lg bg-background border border-border ${!isSubmitted ? 'blur-sm' : ''}`}>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-medium text-muted-foreground">
                             Annual FTE Saved
@@ -225,14 +360,14 @@ const RoiCalculator = () => {
                           <Users className="h-5 w-5 text-primary" />
                         </div>
                         <div className="text-3xl font-bold text-primary">
-                          {fteSaved.toFixed(2)}
+                          {isSubmitted ? fteSaved.toFixed(2) : 'X.XX'}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                           Full-time equivalents freed up for strategic work
                         </p>
                       </div>
 
-                      <div className="p-6 rounded-lg bg-background border border-border">
+                      <div className={`p-6 rounded-lg bg-background border border-border ${!isSubmitted ? 'blur-sm' : ''}`}>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-medium text-muted-foreground">
                             Annual QA Cost Savings
@@ -240,17 +375,21 @@ const RoiCalculator = () => {
                           <DollarSign className="h-5 w-5 text-primary" />
                         </div>
                         <div className="text-3xl font-bold text-primary">
-                          ${annualCostSavings.toLocaleString('en-US', {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0,
-                          })}
+                          {isSubmitted ? (
+                            `$${annualCostSavings.toLocaleString('en-US', {
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 0,
+                            })}`
+                          ) : (
+                            `$${formatSneakPeek(annualCostSavings)}`
+                          )}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                           Total annual savings from reduced manual testing
                         </p>
                       </div>
 
-                      <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
+                      <div className={`p-4 rounded-lg bg-muted/50 border border-border/50 ${!isSubmitted ? 'blur-sm pointer-events-none' : ''}`}>
                         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
                           Calculation Formula
                         </p>
@@ -420,7 +559,7 @@ const RoiCalculator = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-primary/5 border-primary/20">
+                  <Card className="bg-primary/5 border-primary/20 relative">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <TrendingUp className="h-5 w-5 text-primary" />
@@ -431,7 +570,21 @@ const RoiCalculator = () => {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                      <div className="p-6 rounded-lg bg-background border border-border">
+                      {!isSubmitted && (
+                        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm z-10 rounded-lg flex items-center justify-center">
+                          <div className="text-center p-6">
+                            <Lock className="h-8 w-8 text-primary mx-auto mb-4" />
+                            <p className="text-sm font-semibold mb-2">Unlock Your Full ROI Report</p>
+                            <p className="text-xs text-muted-foreground mb-4">
+                              Get detailed breakdowns and personalized recommendations
+                            </p>
+                            <Button onClick={() => setIsFormOpen(true)} className="w-full">
+                              Get My Full Report
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                      <div className={`p-6 rounded-lg bg-background border border-border ${!isSubmitted ? 'blur-sm' : ''}`}>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-medium text-muted-foreground">
                             Hours Saved per Deployment
@@ -439,14 +592,14 @@ const RoiCalculator = () => {
                           <Zap className="h-5 w-5 text-primary" />
                         </div>
                         <div className="text-3xl font-bold text-primary">
-                          {hoursSavedPerDeployment.toFixed(1)}
+                          {isSubmitted ? hoursSavedPerDeployment.toFixed(1) : 'XX.X'}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                           Developer hours saved per deployment cycle
                         </p>
                       </div>
 
-                      <div className="p-6 rounded-lg bg-background border border-border">
+                      <div className={`p-6 rounded-lg bg-background border border-border ${!isSubmitted ? 'blur-sm' : ''}`}>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-medium text-muted-foreground">
                             Total Engineering Hours Recouped Annually
@@ -454,17 +607,21 @@ const RoiCalculator = () => {
                           <TrendingUp className="h-5 w-5 text-primary" />
                         </div>
                         <div className="text-3xl font-bold text-primary">
-                          {recoupedHours.toLocaleString('en-US', {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0,
-                          })}
+                          {isSubmitted ? (
+                            recoupedHours.toLocaleString('en-US', {
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 0,
+                            })
+                          ) : (
+                            formatSneakPeek(recoupedHours).replace('$', '').replace(',', '')
+                          )}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                           Developer hours saved per year
                         </p>
                       </div>
 
-                      <div className="p-6 rounded-lg bg-background border border-border">
+                      <div className={`p-6 rounded-lg bg-background border border-border ${!isSubmitted ? 'blur-sm' : ''}`}>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-medium text-muted-foreground">
                             Monetary Value of Recouped Time
@@ -472,17 +629,21 @@ const RoiCalculator = () => {
                           <DollarSign className="h-5 w-5 text-primary" />
                         </div>
                         <div className="text-3xl font-bold text-primary">
-                          ${valueRecouped.toLocaleString('en-US', {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0,
-                          })}
+                          {isSubmitted ? (
+                            `$${valueRecouped.toLocaleString('en-US', {
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 0,
+                            })}`
+                          ) : (
+                            `$${formatSneakPeek(valueRecouped)}`
+                          )}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                           Annual value of developer time saved
                         </p>
                       </div>
 
-                      <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
+                      <div className={`p-4 rounded-lg bg-muted/50 border border-border/50 ${!isSubmitted ? 'blur-sm pointer-events-none' : ''}`}>
                         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
                           Calculation Formula
                         </p>
@@ -600,7 +761,7 @@ const RoiCalculator = () => {
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-primary/5 border-primary/20">
+                  <Card className="bg-primary/5 border-primary/20 relative">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <TrendingUp className="h-5 w-5 text-primary" />
@@ -611,7 +772,21 @@ const RoiCalculator = () => {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                      <div className="p-6 rounded-lg bg-background border border-border">
+                      {!isSubmitted && (
+                        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm z-10 rounded-lg flex items-center justify-center">
+                          <div className="text-center p-6">
+                            <Lock className="h-8 w-8 text-primary mx-auto mb-4" />
+                            <p className="text-sm font-semibold mb-2">Unlock Your Full ROI Report</p>
+                            <p className="text-xs text-muted-foreground mb-4">
+                              Get detailed breakdowns and personalized recommendations
+                            </p>
+                            <Button onClick={() => setIsFormOpen(true)} className="w-full">
+                              Get My Full Report
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                      <div className={`p-6 rounded-lg bg-background border border-border ${!isSubmitted ? 'blur-sm' : ''}`}>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-medium text-muted-foreground">
                             Bugs Avoided (Annual)
@@ -619,14 +794,14 @@ const RoiCalculator = () => {
                           <Shield className="h-5 w-5 text-primary" />
                         </div>
                         <div className="text-3xl font-bold text-primary">
-                          {Math.round(bugsMonthly * 12 * (ASKUI_BUG_REDUCTION_PERCENT / 100))}
+                          {isSubmitted ? Math.round(bugsMonthly * 12 * (ASKUI_BUG_REDUCTION_PERCENT / 100)) : 'XXX+'}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                           High-severity bugs prevented from reaching production
                         </p>
                       </div>
 
-                      <div className="p-6 rounded-lg bg-background border border-border">
+                      <div className={`p-6 rounded-lg bg-background border border-border ${!isSubmitted ? 'blur-sm' : ''}`}>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-medium text-muted-foreground">
                             Annual Bug Cost Avoidance
@@ -634,17 +809,21 @@ const RoiCalculator = () => {
                           <DollarSign className="h-5 w-5 text-primary" />
                         </div>
                         <div className="text-3xl font-bold text-primary">
-                          ${bugAvoidance.toLocaleString('en-US', {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0,
-                          })}
+                          {isSubmitted ? (
+                            `$${bugAvoidance.toLocaleString('en-US', {
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 0,
+                            })}`
+                          ) : (
+                            `$${formatSneakPeek(bugAvoidance)}`
+                          )}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                           Cost avoided by catching bugs before production
                         </p>
                       </div>
 
-                      <div className="p-4 rounded-lg bg-muted/50 border border-border/50">
+                      <div className={`p-4 rounded-lg bg-muted/50 border border-border/50 ${!isSubmitted ? 'blur-sm pointer-events-none' : ''}`}>
                         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
                           Calculation Formula
                         </p>
@@ -670,20 +849,57 @@ const RoiCalculator = () => {
       <section className="py-12 md:py-20 bg-primary/5">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-6xl mx-auto space-y-6">
-            <Card className="border-primary/20 bg-primary/5">
-              <CardContent className="pt-6">
-                <div className="text-center">
+            <Card className="border-primary/20 bg-primary/5 relative overflow-hidden">
+              <CardContent className="pt-6 pb-8 min-h-[400px]">
+                {/* Blurred Content - Always rendered, conditionally blurred */}
+                <div className={`text-center transition-all duration-300 ${!isSubmitted ? 'blur-md' : 'blur-0'}`}>
                   <p className="text-sm font-medium text-muted-foreground mb-2">Total Estimated Annual ROI</p>
                   <div className="text-5xl font-bold text-primary mb-2">
-                    ${totalROI.toLocaleString('en-US', {
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0,
-                    })}
+                    {isSubmitted ? (
+                      `$${totalROI.toLocaleString('en-US', {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      })}`
+                    ) : (
+                      `$${formatSneakPeek(totalROI)}`
+                    )}
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Combined savings from FTE reduction, developer velocity, and risk mitigation
                   </p>
                 </div>
+                
+                {/* Overlay - Only shown when not submitted */}
+                {!isSubmitted && (
+                  <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px] z-10 rounded-lg flex items-center justify-center">
+                    <div className="text-center p-8 max-w-md bg-background/95 backdrop-blur-md rounded-lg border border-border/50 shadow-lg">
+                      <Lock className="h-12 w-12 text-primary mx-auto mb-4" />
+                      <h3 className="text-xl font-bold mb-2">Unlock Your Complete ROI Report</h3>
+                      <div className="h-px bg-border my-4"></div>
+                      <p className="text-sm text-muted-foreground mb-6">
+                        Get your personalized ROI breakdown with detailed calculations, actionable insights, and recommendations delivered to your inbox.
+                      </p>
+                      <div className="space-y-2 mb-6">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground justify-center">
+                          <CheckCircle className="h-4 w-4 text-primary" />
+                          <span>Detailed breakdown by category</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground justify-center">
+                          <CheckCircle className="h-4 w-4 text-primary" />
+                          <span>Personalized recommendations</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground justify-center">
+                          <CheckCircle className="h-4 w-4 text-primary" />
+                          <span>Full report sent to your email</span>
+                        </div>
+                      </div>
+                      <Button onClick={() => setIsFormOpen(true)} size="lg" className="w-full">
+                        <Mail className="h-4 w-4 mr-2" />
+                        Get My Full ROI Report
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -842,6 +1058,90 @@ const RoiCalculator = () => {
       </section>
 
       <Footer />
+
+      {/* Lead Capture Form Modal */}
+      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Get Your Full ROI Report</DialogTitle>
+            <DialogDescription>
+              Enter your details to receive your personalized ROI breakdown with detailed calculations and recommendations.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleFormSubmit} className="space-y-4 mt-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="firstName">First Name *</Label>
+                <Input
+                  id="firstName"
+                  value={formData.firstName}
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  placeholder="John"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="lastName">Last Name *</Label>
+                <Input
+                  id="lastName"
+                  value={formData.lastName}
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  placeholder="Doe"
+                  required
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email *</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                placeholder="john.doe@company.com"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="company">Company</Label>
+              <Input
+                id="company"
+                value={formData.company}
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                placeholder="Your Company"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone</Label>
+              <Input
+                id="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                placeholder="+1 (555) 123-4567"
+              />
+            </div>
+            <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
+              <p className="text-xs text-muted-foreground">
+                By submitting this form, you agree to receive your ROI report and may be contacted by our team. 
+                You can unsubscribe at any time.
+              </p>
+            </div>
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <span className="mr-2">Submitting...</span>
+                </>
+              ) : (
+                <>
+                  <Mail className="h-4 w-4 mr-2" />
+                  Get My Full Report
+                </>
+              )}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
