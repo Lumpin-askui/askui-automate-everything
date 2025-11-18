@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle, Upload, Mail, Link as LinkIcon, FileSpreadsheet } from "lucide-react";
+import { CheckCircle, Upload, Mail, Link as LinkIcon, FileSpreadsheet, Globe } from "lucide-react";
 
 const ZAPIER_WEBHOOK_URL = import.meta.env.VITE_ZAPIER_WEBHOOK_URL || "https://hooks.zapier.com/hooks/catch/15603221/uzbs47d/";
 
@@ -13,6 +13,7 @@ const CSVUpload = () => {
   const [csvFile, setCsvFile] = useState<File | null>(null);
   const [email, setEmail] = useState("");
   const [linkedinUrl, setLinkedinUrl] = useState("https://");
+  const [targetUrl, setTargetUrl] = useState("https://");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -36,6 +37,15 @@ const CSVUpload = () => {
   const validateLinkedInUrl = (value: string): boolean => {
     const linkedinRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/.+/i;
     return linkedinRegex.test(value);
+  };
+
+  const validateUrl = (value: string): boolean => {
+    try {
+      const url = new URL(value);
+      return url.protocol === "http:" || url.protocol === "https:";
+    } catch {
+      return false;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -67,6 +77,16 @@ const CSVUpload = () => {
       return;
     }
 
+    if (!targetUrl.trim()) {
+      alert("Please enter the target URL of the application to automate.");
+      return;
+    }
+
+    if (!validateUrl(targetUrl.trim())) {
+      alert("Please enter a valid URL (must start with http:// or https://).");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -74,6 +94,7 @@ const CSVUpload = () => {
       formData.append("csvFile", csvFile);
       formData.append("email", email.trim());
       formData.append("linkedinUrl", linkedinUrl.trim());
+      formData.append("targetUrl", targetUrl.trim());
       formData.append("timestamp", new Date().toISOString());
 
       const response = await fetch(ZAPIER_WEBHOOK_URL, {
@@ -89,6 +110,7 @@ const CSVUpload = () => {
       setCsvFile(null);
       setEmail("");
       setLinkedinUrl("https://");
+      setTargetUrl("https://");
       // Reset file input
       const fileInput = document.getElementById("csvFile") as HTMLInputElement;
       if (fileInput) {
@@ -107,6 +129,7 @@ const CSVUpload = () => {
     setCsvFile(null);
     setEmail("");
     setLinkedinUrl("https://");
+    setTargetUrl("https://");
     const fileInput = document.getElementById("csvFile") as HTMLInputElement;
     if (fileInput) {
       fileInput.value = "";
@@ -166,6 +189,26 @@ const CSVUpload = () => {
                       </p>
                     </div>
 
+                    {/* Target Application URL */}
+                    <div className="space-y-2">
+                      <Label htmlFor="targetUrl" className="flex items-center gap-2">
+                        <Globe className="h-4 w-4" />
+                        Target Application URL
+                      </Label>
+                      <Input
+                        id="targetUrl"
+                        type="url"
+                        value={targetUrl}
+                        onChange={(e) => setTargetUrl(e.target.value)}
+                        placeholder="https://example.com"
+                        required
+                        disabled={isSubmitted}
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        Enter the URL where we can find the application to automate
+                      </p>
+                    </div>
+
                     {/* Contact Information */}
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -206,7 +249,7 @@ const CSVUpload = () => {
                         type="submit"
                         size="lg"
                         className="bg-primary hover:bg-primary/90 text-accent px-8"
-                        disabled={!csvFile || !email.trim() || !linkedinUrl.trim() || linkedinUrl.trim() === "https://" || isSubmitting}
+                        disabled={!csvFile || !email.trim() || !linkedinUrl.trim() || linkedinUrl.trim() === "https://" || !targetUrl.trim() || targetUrl.trim() === "https://" || isSubmitting}
                       >
                         {isSubmitting ? (
                           "Uploading..."
