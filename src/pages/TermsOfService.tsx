@@ -3,20 +3,18 @@ import Footer from "@/components/Footer";
 
 const TermsOfService = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-20">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-        
+      <section className="relative py-20 bg-secondary/30 border-b border-border">
         <div className="container relative mx-auto px-4 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
               Terms of Service
             </h1>
             
-            <p className="mb-8 text-lg text-white/80">
+            <p className="mb-8 text-lg text-muted-foreground">
               Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
             </p>
           </div>
@@ -26,10 +24,10 @@ const TermsOfService = () => {
       {/* Content */}
       <section className="py-16">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
+          <div className="max-w-4xl mx-auto prose prose-lg prose-slate dark:prose-invert">
             <div className="space-y-8">
               <section>
-                <h2 className="text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">1. Acceptance of Terms</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   By accessing or using the AskUI services, you agree to be bound by these Terms of Service and all 
                   applicable laws and regulations. If you do not agree with any of these terms, you are prohibited 
@@ -38,7 +36,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">2. Use License</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">2. Use License</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Permission is granted to temporarily download one copy of the AskUI software for personal, 
                   non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, 
@@ -54,7 +52,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">3. Account Registration</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">3. Account Registration</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   You may be required to register an account to access certain features of our Services. You agree 
                   to provide accurate, current, and complete information during registration and to update such 
@@ -64,7 +62,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">4. Acceptable Use</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">4. Acceptable Use</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   You agree not to use the Services to:
                 </p>
@@ -79,7 +77,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">5. Payment Terms</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">5. Payment Terms</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   If you purchase a paid subscription, you agree to pay all fees associated with your subscription. 
                   Fees are billed in advance on a recurring basis. All fees are non-refundable except as required by 
@@ -89,7 +87,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">6. Intellectual Property</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">6. Intellectual Property</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   The Services and their original content, features, and functionality are owned by AskUI and are 
                   protected by international copyright, trademark, patent, trade secret, and other intellectual 
@@ -99,7 +97,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">7. Disclaimer</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">7. Disclaimer</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   The information on this website and in our Services is provided on an "as is" basis. To the fullest 
                   extent permitted by law, AskUI excludes all representations, warranties, and conditions relating to 
@@ -108,7 +106,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">8. Limitation of Liability</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">8. Limitation of Liability</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   In no event shall AskUI or its suppliers be liable for any damages (including, without limitation, 
                   damages for loss of data or profit, or due to business interruption) arising out of the use or 
@@ -118,7 +116,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">9. Termination</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">9. Termination</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We may terminate or suspend your account and access to the Services immediately, without prior 
                   notice or liability, for any reason whatsoever, including without limitation if you breach the 
@@ -127,7 +125,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">10. Changes to Terms</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">10. Changes to Terms</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a 
                   revision is material, we will provide at least 30 days notice prior to any new terms taking effect.
@@ -135,7 +133,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">11. Governing Law</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">11. Governing Law</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   These Terms shall be governed by and construed in accordance with the laws of [Your Jurisdiction], 
                   without regard to its conflict of law provisions.
@@ -143,7 +141,7 @@ const TermsOfService = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">12. Contact Information</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">12. Contact Information</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   If you have any questions about these Terms of Service, please contact us at:
                 </p>
@@ -163,4 +161,3 @@ const TermsOfService = () => {
 };
 
 export default TermsOfService;
-

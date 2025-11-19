@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/pagination";
 import { ArrowRight, Search, Clock, Tag } from "lucide-react";
 import { cms } from "@/services/cms";
+import "@/styles/design-system.css";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -101,32 +101,36 @@ const Blog = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <Header />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-20">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-        
-        <div className="container relative mx-auto px-4 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-              AskUI Blog
-              <span className="block text-accent text-2xl md:text-3xl font-normal mt-4">Insights, Tutorials & Updates</span>
+      <section className="section-padding" style={{ background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-subtle)' }}>
+        <div className="container-custom">
+          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+            <h1 className="section-title">
+              AskUI Blog <br />
+              <span style={{ color: 'var(--text-secondary)', fontSize: '0.6em', display: 'block', marginTop: '1rem', fontWeight: 400 }}>Insights, Tutorials & Updates</span>
             </h1>
             
-            <p className="mb-8 text-lg text-white/80">
+            <p className="section-subtitle">
               Learn about computer use agents, automation best practices, and product updates
             </p>
 
             {/* Search */}
-            <div className="max-w-xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <div style={{ maxWidth: '600px', margin: '0 auto', position: 'relative' }}>
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" style={{ color: 'var(--text-tertiary)' }} />
               <Input 
                 placeholder="Search articles..."
-                className="pl-12 h-12 bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                className="pl-12 h-12"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                style={{ 
+                  backgroundColor: 'var(--bg-primary)', 
+                  borderColor: 'var(--border-subtle)',
+                  color: 'var(--text-primary)',
+                  borderRadius: '8px'
+                }}
               />
             </div>
           </div>
@@ -134,8 +138,8 @@ const Blog = () => {
       </section>
 
       {/* Categories */}
-      <section className="py-8 border-b border-border/40 sticky top-16 z-40 bg-background/95 backdrop-blur">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section style={{ padding: 'var(--space-lg) 0', borderBottom: '1px solid var(--border-subtle)', position: 'sticky', top: '64px', zIndex: 40, background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(10px)' }}>
+        <div className="container-custom">
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
             {categories.map((category) => (
               <Button
@@ -144,6 +148,15 @@ const Blog = () => {
                 size="sm"
                 onClick={() => setSelectedCategory(category)}
                 className="whitespace-nowrap"
+                style={selectedCategory === category ? {
+                  backgroundColor: 'var(--accent-primary)',
+                  color: '#fff',
+                  border: 'none'
+                } : {
+                  backgroundColor: 'transparent',
+                  color: 'var(--text-secondary)',
+                  borderColor: 'var(--border-subtle)'
+                }}
               >
                 {category}
               </Button>
@@ -153,62 +166,72 @@ const Blog = () => {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="section-padding">
+        <div className="container-custom">
           {filteredPosts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-muted-foreground text-lg">No articles found matching your criteria.</p>
+              <p className="text-muted-foreground text-lg" style={{ color: 'var(--text-secondary)' }}>No articles found matching your criteria.</p>
             </div>
           ) : (
             <>
               {/* Results count */}
-              <div className="mb-6 text-sm text-muted-foreground">
+              <div className="mb-6 text-sm text-muted-foreground" style={{ color: 'var(--text-tertiary)' }}>
                 Showing {startIndex + 1}-{Math.min(endIndex, filteredPosts.length)} of {filteredPosts.length} articles
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              <div className="grid-3" style={{ marginBottom: 'var(--space-3xl)' }}>
                 {paginatedPosts.map((post) => (
-                  <Link key={post.id} to={`/blog-posts/${post.slug}`}>
-                    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 group cursor-pointer h-full">
+                  <Link key={post.id} to={`/blog-posts/${post.slug}`} style={{ textDecoration: 'none' }}>
+                    <div className="glass-panel group" style={{ height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', transition: 'all 0.3s ease' }}>
                       <div className="aspect-video overflow-hidden">
                         <img 
                           src={post.image} 
                           alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                          className="group-hover:scale-105"
                         />
                       </div>
-                      <div className="p-6">
-                        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
-                          <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-[#962C5D]/10 text-[#962C5D] font-medium">
-                            <Tag className="h-3 w-3" />
+                      <div style={{ padding: 'var(--space-lg)', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.75rem', color: 'var(--text-tertiary)', marginBottom: 'var(--space-md)' }}>
+                          <span style={{ 
+                            display: 'inline-flex', 
+                            alignItems: 'center', 
+                            gap: '4px', 
+                            padding: '2px 8px', 
+                            borderRadius: '4px', 
+                            background: 'rgba(22, 163, 74, 0.1)', 
+                            color: 'var(--accent-primary)', 
+                            fontWeight: 500 
+                          }}>
+                            <Tag size={12} />
                             {post.category}
                           </span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <Clock size={12} />
                             {post.readTime}
                           </span>
                         </div>
                         
-                        <h3 className="text-xl font-bold mb-2 group-hover:text-[#962C5D] transition-colors">
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: 'var(--space-sm)', color: 'var(--text-primary)', transition: 'color 0.2s' }} className="group-hover:text-accent-primary">
                           {post.title}
                         </h3>
                         
-                        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                        <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)', lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                           {post.excerpt}
                         </p>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                          <div className="text-xs text-muted-foreground">
-                            <div className="font-medium text-foreground">{post.author}</div>
+                        <div style={{ marginTop: 'auto', paddingTop: 'var(--space-md)', borderTop: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+                            <div style={{ fontWeight: 500, color: 'var(--text-primary)' }}>{post.author}</div>
                             <div>{new Date(post.date).toLocaleDateString()}</div>
                           </div>
-                          <div className="flex items-center text-sm font-medium text-[#962C5D]">
+                          <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.875rem', fontWeight: 500, color: 'var(--accent-primary)' }}>
                             Read
-                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                            <ArrowRight style={{ marginLeft: '8px', transition: 'transform 0.2s' }} size={16} className="group-hover:translate-x-1" />
                           </div>
                         </div>
                       </div>
-                    </Card>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -226,6 +249,7 @@ const Blog = () => {
                           }
                         }}
                         className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                        style={{ color: 'var(--text-primary)' }}
                       />
                     </PaginationItem>
 
@@ -233,7 +257,7 @@ const Blog = () => {
                       if (page === "ellipsis-start" || page === "ellipsis-end") {
                         return (
                           <PaginationItem key={`ellipsis-${index}`}>
-                            <PaginationEllipsis />
+                            <PaginationEllipsis style={{ color: 'var(--text-tertiary)' }} />
                           </PaginationItem>
                         );
                       }
@@ -250,6 +274,13 @@ const Blog = () => {
                             className="cursor-pointer"
                             href="#"
                             role="button"
+                            style={currentPage === pageNumber ? {
+                              backgroundColor: 'var(--accent-primary)',
+                              color: '#fff',
+                              border: 'none'
+                            } : {
+                              color: 'var(--text-primary)'
+                            }}
                           >
                             {pageNumber}
                           </PaginationLink>
@@ -266,6 +297,7 @@ const Blog = () => {
                           }
                         }}
                         className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                        style={{ color: 'var(--text-primary)' }}
                       />
                     </PaginationItem>
                   </PaginationContent>

@@ -1,7 +1,6 @@
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Quote } from "lucide-react";
 import { cms } from "@/services/cms";
+import "@/styles/design-system.css";
 
 const CustomerStory = () => {
   const caseStudy = cms.getCaseStudyBySlug(
@@ -29,58 +28,75 @@ const CustomerStory = () => {
   ).filter((metric): metric is { label: string; value: string } => Boolean(metric));
 
   return (
-    <section className="py-16 md:py-24 bg-muted/30">
-      <div className="container mx-auto px-4 lg:px-8">
-        <Card className="max-w-5xl mx-auto shadow-lg border-border/40">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr]">
-            <div className="p-6 sm:p-10 bg-background flex flex-col gap-8">
-              <div className="flex flex-col gap-4">
-                <img
-                  src={caseStudy.logo}
-                  alt={caseStudy.company}
-                  className="h-14 w-auto object-contain bg-white p-3 rounded-md shadow-sm"
-                />
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  {caseStudy.industry}
+    <section className="section-padding" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+      <div className="container-custom">
+        <div className="glass-panel" style={{ overflow: 'hidden' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr' }} className="customer-story-grid">
+            
+            {/* Left Column */}
+            <div style={{ padding: 'var(--space-2xl)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+                <div style={{ background: '#fff', padding: '12px', borderRadius: '8px', width: 'fit-content' }}>
+                  <img
+                    src={caseStudy.logo}
+                    alt={caseStudy.company}
+                    style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
+                  />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                  {caseStudy.company}
-                </h2>
-              </div>
-
-              {caseStudy.quote && (
-                <div className="rounded-lg border border-border/50 bg-muted/40 p-5">
-                  <Quote className="h-5 w-5 text-[#962C5D] mb-3" />
-                  <p className="text-sm sm:text-base italic text-foreground/90 mb-3">
-                    “{caseStudy.quote}”
-                  </p>
-                  {caseStudy.author && (
-                    <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                      {caseStudy.author}
-                    </div>
-                  )}
+                
+                <div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-secondary)', marginBottom: 'var(--space-xs)' }}>
+                    {caseStudy.industry}
+                  </div>
+                  <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.1 }}>
+                    {caseStudy.company}
+                  </h2>
                 </div>
-              )}
 
-              <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-accent" asChild>
-                <a href={`/case-studies/${caseStudy.slug}`}>
+                {caseStudy.quote && (
+                  <div style={{ padding: 'var(--space-lg)', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
+                    <Quote style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-md)' }} size={24} />
+                    <p style={{ fontSize: '1.125rem', fontStyle: 'italic', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 'var(--space-md)' }}>
+                      “{caseStudy.quote}”
+                    </p>
+                    {caseStudy.author && (
+                      <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                        {caseStudy.author}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <a 
+                  href={`/case-studies/${caseStudy.slug}`} 
+                  className="btn-primary"
+                  style={{ width: 'fit-content', marginTop: 'var(--space-md)', background: 'var(--text-primary)', color: 'var(--bg-primary)' }}
+                >
                   Read Full Story
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight style={{ marginLeft: '8px' }} size={20} />
                 </a>
-              </Button>
+              </div>
             </div>
 
-            <div className="p-6 sm:p-10 bg-[#f8fbe7] dark:bg-[#241d27] flex flex-col gap-8 border-t lg:border-t-0 lg:border-l border-border/30">
+            {/* Right Column */}
+            <div style={{ 
+              padding: 'var(--space-2xl)', 
+              background: 'var(--bg-card)', 
+              borderLeft: '1px solid var(--border-subtle)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--space-2xl)'
+            }}>
               {keyResults.length > 0 && (
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">
+                  <h3 style={{ fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)' }}>
                     Key Results
                   </h3>
-                  <ul className="space-y-3">
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
                     {keyResults.map((result, index) => (
-                      <li key={index} className="flex items-start gap-3 text-sm text-foreground">
-                        <CheckCircle className="h-5 w-5 text-[#92c51e] flex-shrink-0 mt-0.5" />
-                        <span>{result}</span>
+                      <li key={index} style={{ display: 'flex', gap: 'var(--space-md)', color: 'var(--text-primary)' }}>
+                        <CheckCircle style={{ color: 'var(--accent-primary)', flexShrink: 0 }} size={20} />
+                        <span style={{ fontSize: '1rem', lineHeight: 1.5 }}>{result}</span>
                       </li>
                     ))}
                   </ul>
@@ -89,19 +105,25 @@ const CustomerStory = () => {
 
               {impactMetrics.length > 0 && (
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-4">
+                  <h3 style={{ fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)' }}>
                     Impact Metrics
                   </h3>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-md)' }}>
                     {impactMetrics.map((metric) => (
                       <div
                         key={metric.label}
-                        className="rounded-lg bg-white/70 dark:bg-white/10 p-4 text-center shadow-sm"
+                        style={{ 
+                          padding: 'var(--space-md)', 
+                          background: 'rgba(255,255,255,0.05)', 
+                          borderRadius: '12px',
+                          textAlign: 'center',
+                          border: '1px solid var(--border-subtle)'
+                        }}
                       >
-                        <div className="text-xl font-bold text-[#7ab310] mb-1">
+                        <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '4px' }}>
                           {metric.value}
                         </div>
-                        <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
                           {metric.label}
                         </div>
                       </div>
@@ -111,8 +133,19 @@ const CustomerStory = () => {
               )}
             </div>
           </div>
-        </Card>
+        </div>
       </div>
+      <style>{`
+        @media (max-width: 1024px) {
+          .customer-story-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .customer-story-grid > div:last-child {
+            border-left: none !important;
+            border-top: 1px solid var(--border-subtle);
+          }
+        }
+      `}</style>
     </section>
   );
 };

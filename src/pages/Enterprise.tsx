@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Shield, Lock, Server, Headphones, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import "@/styles/design-system.css";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -61,21 +62,19 @@ const Enterprise = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <Header />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-20">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-        
-        <div className="container relative mx-auto px-4 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-              Enterprise Solutions
-              <span className="block text-accent mt-2">Built for Scale & Security</span>
+      <section className="section-padding" style={{ background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-subtle)' }}>
+        <div className="container-custom">
+          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+            <h1 className="section-title">
+              Enterprise Solutions <br />
+              <span style={{ color: 'var(--text-secondary)', fontSize: '0.6em', display: 'block', marginTop: '1rem', fontWeight: 400 }}>Built for Scale & Security</span>
             </h1>
             
-            <p className="mb-8 text-lg text-white/80 md:text-xl">
+            <p className="section-subtitle">
               Deploy computer use agents across your organization with enterprise-grade support, compliance, and dedicated infrastructure.
             </p>
           </div>
@@ -83,92 +82,92 @@ const Enterprise = () => {
       </section>
 
       {/* Combined Features & Form Section */}
-      <section className="py-12 bg-muted/30">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="section-padding">
+        <div className="container-custom">
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div className="p-4 rounded-lg text-center">
-              <Shield className="h-8 w-8 text-[#962C5D] mx-auto mb-3" />
-              <h3 className="font-semibold mb-1 text-sm">ISO27001 Certified</h3>
-              <p className="text-xs text-muted-foreground">Enterprise security & compliance</p>
+          <div className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-md)', marginBottom: 'var(--space-3xl)' }}>
+            <div className="glass-panel" style={{ padding: 'var(--space-lg)', textAlign: 'center' }}>
+              <Shield size={32} style={{ color: 'var(--accent-primary)', margin: '0 auto', marginBottom: 'var(--space-md)' }} />
+              <h3 style={{ fontWeight: 600, marginBottom: '4px' }}>ISO27001 Certified</h3>
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Enterprise security & compliance</p>
             </div>
-            <div className="p-4 rounded-lg text-center">
-              <Lock className="h-8 w-8 text-[#962C5D] mx-auto mb-3" />
-              <h3 className="font-semibold mb-1 text-sm">On-Premise Deployment</h3>
-              <p className="text-xs text-muted-foreground">Full data sovereignty</p>
+            <div className="glass-panel" style={{ padding: 'var(--space-lg)', textAlign: 'center' }}>
+              <Lock size={32} style={{ color: 'var(--accent-primary)', margin: '0 auto', marginBottom: 'var(--space-md)' }} />
+              <h3 style={{ fontWeight: 600, marginBottom: '4px' }}>On-Premise Deployment</h3>
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Full data sovereignty</p>
             </div>
-            <div className="p-4 rounded-lg text-center">
-              <Server className="h-8 w-8 text-[#962C5D] mx-auto mb-3" />
-              <h3 className="font-semibold mb-1 text-sm">Dedicated Infrastructure</h3>
-              <p className="text-xs text-muted-foreground">Private cloud options</p>
+            <div className="glass-panel" style={{ padding: 'var(--space-lg)', textAlign: 'center' }}>
+              <Server size={32} style={{ color: 'var(--accent-primary)', margin: '0 auto', marginBottom: 'var(--space-md)' }} />
+              <h3 style={{ fontWeight: 600, marginBottom: '4px' }}>Dedicated Infrastructure</h3>
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Private cloud options</p>
             </div>
-            <div className="p-4 rounded-lg text-center">
-              <Headphones className="h-8 w-8 text-[#962C5D] mx-auto mb-3" />
-              <h3 className="font-semibold mb-1 text-sm">24/7 Support</h3>
-              <p className="text-xs text-muted-foreground">Dedicated success team</p>
+            <div className="glass-panel" style={{ padding: 'var(--space-lg)', textAlign: 'center' }}>
+              <Headphones size={32} style={{ color: 'var(--accent-primary)', margin: '0 auto', marginBottom: 'var(--space-md)' }} />
+              <h3 style={{ fontWeight: 600, marginBottom: '4px' }}>24/7 Support</h3>
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Dedicated success team</p>
             </div>
           </div>
 
           {/* Two Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-3xl)' }} className="enterprise-grid">
             {/* Left Column - Benefits & Compliance */}
-            <div className="space-y-6">
-              <div className="p-6 rounded-lg">
-                <h2 className="text-2xl font-bold mb-6">Enterprise Benefits</h2>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-[#962C5D] flex-shrink-0 mt-0.5" />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
+              <div className="glass-panel" style={{ padding: 'var(--space-xl)' }}>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: 'var(--space-lg)', color: 'var(--text-primary)' }}>Enterprise Benefits</h2>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+                  <li style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                    <CheckCircle size={20} style={{ color: 'var(--accent-primary)', flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <div className="font-semibold mb-1">Custom SLAs</div>
-                      <div className="text-sm text-muted-foreground">Tailored service level agreements for your business needs</div>
+                      <div style={{ fontWeight: 600, marginBottom: '2px' }}>Custom SLAs</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Tailored service level agreements for your business needs</div>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-[#962C5D] flex-shrink-0 mt-0.5" />
+                  <li style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                    <CheckCircle size={20} style={{ color: 'var(--accent-primary)', flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <div className="font-semibold mb-1">Priority Support</div>
-                      <div className="text-sm text-muted-foreground">Direct access to engineering team and 24/7 support</div>
+                      <div style={{ fontWeight: 600, marginBottom: '2px' }}>Priority Support</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Direct access to engineering team and 24/7 support</div>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-[#962C5D] flex-shrink-0 mt-0.5" />
+                  <li style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                    <CheckCircle size={20} style={{ color: 'var(--accent-primary)', flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <div className="font-semibold mb-1">Volume Licensing</div>
-                      <div className="text-sm text-muted-foreground">Flexible pricing for large deployments</div>
+                      <div style={{ fontWeight: 600, marginBottom: '2px' }}>Volume Licensing</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Flexible pricing for large deployments</div>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-[#962C5D] flex-shrink-0 mt-0.5" />
+                  <li style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                    <CheckCircle size={20} style={{ color: 'var(--accent-primary)', flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <div className="font-semibold mb-1">Custom Integrations</div>
-                      <div className="text-sm text-muted-foreground">Integrate with your existing tools and workflows</div>
+                      <div style={{ fontWeight: 600, marginBottom: '2px' }}>Custom Integrations</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Integrate with your existing tools and workflows</div>
                     </div>
                   </li>
                 </ul>
               </div>
 
-              <div className="p-6 rounded-lg">
-                <h2 className="text-2xl font-bold mb-6">Security & Compliance</h2>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-[#962C5D] flex-shrink-0 mt-0.5" />
+              <div className="glass-panel" style={{ padding: 'var(--space-xl)' }}>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: 'var(--space-lg)', color: 'var(--text-primary)' }}>Security & Compliance</h2>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+                  <li style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                    <CheckCircle size={20} style={{ color: 'var(--accent-primary)', flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <div className="font-semibold mb-1">ISO27001 Certification</div>
-                      <div className="text-sm text-muted-foreground">Information security management certified</div>
+                      <div style={{ fontWeight: 600, marginBottom: '2px' }}>ISO27001 Certification</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Information security management certified</div>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-[#962C5D] flex-shrink-0 mt-0.5" />
+                  <li style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                    <CheckCircle size={20} style={{ color: 'var(--accent-primary)', flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <div className="font-semibold mb-1">GDPR Compliant</div>
-                      <div className="text-sm text-muted-foreground">Full European data protection compliance</div>
+                      <div style={{ fontWeight: 600, marginBottom: '2px' }}>GDPR Compliant</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Full European data protection compliance</div>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-[#962C5D] flex-shrink-0 mt-0.5" />
+                  <li style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                    <CheckCircle size={20} style={{ color: 'var(--accent-primary)', flexShrink: 0, marginTop: '2px' }} />
                     <div>
-                      <div className="font-semibold mb-1">Air-Gapped Options</div>
-                      <div className="text-sm text-muted-foreground">Deploy in completely isolated environments</div>
+                      <div style={{ fontWeight: 600, marginBottom: '2px' }}>Air-Gapped Options</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Deploy in completely isolated environments</div>
                     </div>
                   </li>
                 </ul>
@@ -176,10 +175,10 @@ const Enterprise = () => {
             </div>
 
             {/* Right Column - Contact Form */}
-            <div className="bg-background p-6 rounded-lg border border-border">
-              <div className="mb-6">
-                <h2 className="text-2xl font-bold mb-2">Request Demo</h2>
-                <p className="text-sm text-muted-foreground">
+            <div className="glass-panel" style={{ padding: 'var(--space-xl)', height: 'fit-content' }}>
+              <div style={{ marginBottom: 'var(--space-lg)' }}>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: 'var(--space-xs)', color: 'var(--text-primary)' }}>Request Demo</h2>
+                <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
                   Get personalized guidance on deploying AskUI in your organization
                 </p>
               </div>
@@ -194,7 +193,7 @@ const Enterprise = () => {
                         <FormItem>
                           <FormLabel>First Name *</FormLabel>
                           <FormControl>
-                            <Input placeholder="John" {...field} />
+                            <Input placeholder="John" {...field} className="bg-background" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -208,7 +207,7 @@ const Enterprise = () => {
                         <FormItem>
                           <FormLabel>Last Name *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Doe" {...field} />
+                            <Input placeholder="Doe" {...field} className="bg-background" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -223,7 +222,7 @@ const Enterprise = () => {
                       <FormItem>
                         <FormLabel>Work Email *</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="john.doe@company.com" {...field} />
+                          <Input type="email" placeholder="john.doe@company.com" {...field} className="bg-background" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -238,7 +237,7 @@ const Enterprise = () => {
                         <FormItem>
                           <FormLabel>Company *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Company Name" {...field} />
+                            <Input placeholder="Company Name" {...field} className="bg-background" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -252,7 +251,7 @@ const Enterprise = () => {
                         <FormItem>
                           <FormLabel>Job Title *</FormLabel>
                           <FormControl>
-                            <Input placeholder="VP of Engineering" {...field} />
+                            <Input placeholder="VP of Engineering" {...field} className="bg-background" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -269,7 +268,7 @@ const Enterprise = () => {
                           <FormLabel>Company Size *</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger>
+                              <SelectTrigger className="bg-background">
                                 <SelectValue placeholder="Select size" />
                               </SelectTrigger>
                             </FormControl>
@@ -294,7 +293,7 @@ const Enterprise = () => {
                           <FormLabel>Primary Platform *</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger>
+                              <SelectTrigger className="bg-background">
                                 <SelectValue placeholder="Select platform" />
                               </SelectTrigger>
                             </FormControl>
@@ -320,7 +319,7 @@ const Enterprise = () => {
                       <FormItem>
                         <FormLabel>Phone Number (Optional)</FormLabel>
                         <FormControl>
-                          <Input type="tel" placeholder="+1 (555) 123-4567" {...field} />
+                          <Input type="tel" placeholder="+1 (555) 123-4567" {...field} className="bg-background" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -336,7 +335,7 @@ const Enterprise = () => {
                         <FormControl>
                           <Textarea 
                             placeholder="Tell us about your automation needs, platforms, and goals..."
-                            className="min-h-[100px]"
+                            className="min-h-[100px] bg-background"
                             {...field}
                           />
                         </FormControl>
@@ -345,7 +344,7 @@ const Enterprise = () => {
                     )}
                   />
 
-                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" className="w-full btn-primary" disabled={isSubmitting} style={{ backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)' }}>
                     {isSubmitting ? "Submitting..." : "Request Demo"}
                   </Button>
 
@@ -358,6 +357,14 @@ const Enterprise = () => {
           </div>
         </div>
       </section>
+      
+      <style>{`
+        @media (max-width: 1024px) {
+          .enterprise-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
 
       <Footer />
     </div>

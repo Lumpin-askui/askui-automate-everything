@@ -3,20 +3,18 @@ import Footer from "@/components/Footer";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-20">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-        
+      <section className="relative py-20 bg-secondary/30 border-b border-border">
         <div className="container relative mx-auto px-4 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
               Privacy Policy
             </h1>
             
-            <p className="mb-8 text-lg text-white/80">
+            <p className="mb-8 text-lg text-muted-foreground">
               Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
             </p>
           </div>
@@ -26,10 +24,10 @@ const PrivacyPolicy = () => {
       {/* Content */}
       <section className="py-16">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
+          <div className="max-w-4xl mx-auto prose prose-lg prose-slate dark:prose-invert">
             <div className="space-y-8">
               <section>
-                <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">1. Introduction</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   At AskUI, we are committed to protecting your privacy. This Privacy Policy explains how we collect, 
                   use, disclose, and safeguard your information when you use our services, including our website, 
@@ -38,7 +36,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">2. Information We Collect</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">2. Information We Collect</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   We collect information that you provide directly to us, including:
                 </p>
@@ -52,7 +50,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">3. How We Use Your Information</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">3. How We Use Your Information</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   We use the information we collect to:
                 </p>
@@ -67,7 +65,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">4. Information Sharing and Disclosure</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">4. Information Sharing and Disclosure</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We do not sell, trade, or rent your personal information to third parties. We may share your 
                   information in the following circumstances:
@@ -81,7 +79,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">5. Data Security</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">5. Data Security</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We implement appropriate technical and organizational measures to protect your personal information 
                   against unauthorized access, alteration, disclosure, or destruction. However, no method of 
@@ -90,7 +88,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">6. Your Rights</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">6. Your Rights</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Depending on your location, you may have certain rights regarding your personal information, including:
                 </p>
@@ -104,7 +102,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">7. Cookies and Tracking Technologies</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">7. Cookies and Tracking Technologies</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We use cookies and similar tracking technologies to track activity on our Services and hold certain 
                   information. You can instruct your browser to refuse all cookies or to indicate when a cookie is 
@@ -113,7 +111,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">8. Changes to This Privacy Policy</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">8. Changes to This Privacy Policy</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We may update our Privacy Policy from time to time. We will notify you of any changes by posting 
                   the new Privacy Policy on this page and updating the "Last updated" date.
@@ -121,7 +119,7 @@ const PrivacyPolicy = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4">9. Contact Us</h2>
+                <h2 className="text-2xl font-bold mb-4 text-foreground">9. Contact Us</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   If you have any questions about this Privacy Policy, please contact us at:
                 </p>
@@ -141,4 +139,3 @@ const PrivacyPolicy = () => {
 };
 
 export default PrivacyPolicy;
-

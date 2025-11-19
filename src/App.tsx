@@ -20,6 +20,7 @@ import AgentStartups from "./pages/AgentStartups";
 import RoiCalculator from "./pages/RoiCalculator";
 import AgileTestingDaysEvent from "./pages/AgileTestingDaysEvent";
 import CSVUpload from "./pages/CSVUpload";
+import Pricing from "./pages/Pricing";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/enterprise" element={<Enterprise />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog-posts/:slug" element={<BlogPost />} />

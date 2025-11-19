@@ -1,97 +1,117 @@
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Github, X, Linkedin, Mail } from "lucide-react";
 import askuiIcon from "@/assets/askui-icon.svg";
+import "@/styles/design-system.css";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-white">
-      <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+    <footer style={{ backgroundColor: 'var(--bg-secondary)', borderTop: '1px solid var(--border-subtle)', paddingTop: 'var(--space-3xl)', paddingBottom: 'var(--space-2xl)' }}>
+      <div className="container-custom">
+        <div className="grid-5-custom">
           {/* Brand */}
-          <div className="lg:col-span-2">
-            <img src={askuiIcon} alt="AskUI" className="h-10 mb-4" />
-            <p className="text-white/70 text-sm mb-4 max-w-sm">
+          <div>
+            <img src={askuiIcon} alt="AskUI" style={{ height: '40px', marginBottom: 'var(--space-md)' }} />
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginBottom: 'var(--space-lg)', maxWidth: '300px', lineHeight: 1.6 }}>
               Enterprise-ready computer use agent infrastructure for Windows, MacOS, Linux, iOS, and Android.
             </p>
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/askui"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-              >
-                <Github className="h-4 w-4" />
-              </a>
-              <a
-                href="https://x.com/ask_ui"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-              >
-                <Twitter className="h-4 w-4" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/askui/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-              >
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a
-                href="mailto:sales@askui.com"
-                className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-              >
-                <Mail className="h-4 w-4" />
-              </a>
+            <div style={{ display: 'flex', gap: 'var(--space-md)' }}>
+              {[
+                { icon: Github, href: "https://github.com/askui" },
+                { icon: X, href: "https://x.com/ask_ui" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/askui/" },
+                { icon: Mail, href: "mailto:sales@askui.com" }
+              ].map((item, index) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '8px',
+                    background: 'var(--bg-primary)',
+                    border: '1px solid var(--border-subtle)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-secondary)',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'var(--bg-tertiary)';
+                    e.currentTarget.style.color = 'var(--text-primary)';
+                    e.currentTarget.style.borderColor = 'var(--border-highlight)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'var(--bg-primary)';
+                    e.currentTarget.style.color = 'var(--text-secondary)';
+                    e.currentTarget.style.borderColor = 'var(--border-subtle)';
+                  }}
+                >
+                  <item.icon size={18} />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Products */}
-          <div>
-            <h3 className="font-semibold mb-4">Products</h3>
-            <ul className="space-y-2 text-sm text-white/70">
-              <li><a href="#" className="hover:text-accent transition-colors">AskUI Caesr</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">AskUI CLI</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">AskUI Suite</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">AskUI SDK</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">AskUI Cloud</a></li>
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2 text-sm text-white/70">
-              <li><a href="#" className="hover:text-accent transition-colors">Documentation</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">API Reference</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Case Studies</a></li>
-              <li><a href="/benchmarks" className="hover:text-accent transition-colors">Benchmarks</a></li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="font-semibold mb-4">Company</h3>
-            <ul className="space-y-2 text-sm text-white/70">
-              <li><a href="#" className="hover:text-accent transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Contact</a></li>
-              <li><a href="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</a></li>
-              <li><a href="/terms-of-service" className="hover:text-accent transition-colors">Terms of Service</a></li>
-              <li><a href="/imprint" className="hover:text-accent transition-colors">Imprint</a></li>
-            </ul>
-          </div>
+          {/* Links Sections */}
+          {[
+            {
+              title: "Products",
+              links: ["AskUI Caesr", "AskUI CLI", "AskUI Suite", "AskUI SDK", "AskUI Cloud"]
+            },
+            {
+              title: "Resources",
+              links: ["Documentation", "API Reference", "Blog", "Case Studies", "Benchmarks"]
+            },
+            {
+              title: "Company",
+              links: ["Careers", "Contact", "Privacy Policy", "Terms of Service", "Imprint"]
+            }
+          ].map((section) => (
+            <div key={section.title}>
+              <h3 style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-lg)' }}>
+                {section.title}
+              </h3>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
+                {section.links.map((link) => (
+                  <li key={link}>
+                    <a 
+                      href="#" 
+                      style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s ease' }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div className="pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
-            <p>© 2025 AskUI. All rights reserved.</p>
-            <div className="flex gap-6">
-              <span>ISO27001 Certified</span>
-            </div>
+        <div style={{ marginTop: 'var(--space-3xl)', paddingTop: 'var(--space-xl)', borderTop: '1px solid var(--border-subtle)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--space-md)' }}>
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-tertiary)' }}>© 2025 AskUI. All rights reserved.</p>
+          <div style={{ fontSize: '0.875rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>
+            ISO27001 Certified
           </div>
         </div>
       </div>
+      
+      <style>{`
+        .grid-5-custom {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: var(--space-2xl);
+        }
+        @media (max-width: 768px) {
+          .grid-5-custom {
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+          }
+        }
+      `}</style>
     </footer>
   );
 };

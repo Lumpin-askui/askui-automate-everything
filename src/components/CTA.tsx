@@ -1,49 +1,72 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import "@/styles/design-system.css";
 
 const CTA = () => {
   return (
-    <section className="py-20 md:py-32">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-primary/90 p-8 md:p-16">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
+    <section className="section-padding">
+      <div className="container-custom">
+        <div className="glass-panel" style={{ 
+          padding: 'var(--space-3xl)', 
+          position: 'relative', 
+          overflow: 'hidden', 
+          background: 'var(--bg-card)', 
+          border: '1px solid var(--border-subtle)',
+          boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.05)'
+        }}>
+          {/* Background Grid - Light */}
+          <div style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px)', 
+            backgroundSize: '40px 40px', 
+            opacity: 0.5
+          }} />
           
-          <div className="relative max-w-3xl mx-auto text-center" id="contact">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Ready to Deploy
-              <span className="block text-accent">Enterprise AI Agents?</span>
+          {/* Glow - Subtle Green */}
+          <div style={{ 
+            position: 'absolute', 
+            top: '-50%', 
+            right: '-20%', 
+            width: '800px', 
+            height: '800px', 
+            background: 'radial-gradient(circle at center, rgba(22, 163, 74, 0.05) 0%, transparent 70%)', 
+            borderRadius: '50%', 
+            pointerEvents: 'none' 
+          }} />
+
+          <div style={{ position: 'relative', maxWidth: '700px', margin: '0 auto', textAlign: 'center' }} id="contact">
+            <h2 style={{ fontSize: '3rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 'var(--space-md)', lineHeight: 1.1 }}>
+              Scale Your Automation <br />
+              <span style={{ color: 'var(--accent-primary)' }}>Without Limits</span>
             </h2>
             
-            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-              Join industry leaders using AskUI to automate workflows across all platforms with enterprise security and reliability.
+            <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', marginBottom: 'var(--space-2xl)', lineHeight: 1.6 }}>
+              Join engineering teams at Deutsche Bahn, Intel, and more who trust AskUI for mission-critical automation.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary font-semibold shadow-glow" asChild>
-                <a href="/enterprise">
-                  Book a Demo
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/10 backdrop-blur-sm" asChild>
-                <a href="https://www.caesr.ai" target="_blank" rel="noopener noreferrer">
-                  Try Caesr
-                </a>
-              </Button>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: 'var(--space-md)', justifyContent: 'center', marginBottom: 'var(--space-2xl)', flexWrap: 'wrap' }}>
+              <a href="/enterprise" className="btn-primary" style={{ height: '56px', padding: '0 32px', fontSize: '1.125rem', boxShadow: '0 4px 14px rgba(22, 163, 74, 0.4)' }}>
+                Book a Demo
+                <ArrowRight style={{ marginLeft: '8px' }} size={20} />
+              </a>
+              <a href="https://www.caesr.ai" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ height: '56px', padding: '0 32px', fontSize: '1.125rem' }}>
+                Start for Free
+              </a>
             </div>
 
-            <div className="mt-8 flex items-center justify-center gap-8 text-sm text-white/70">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent"></span>
-                Free to start
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'var(--space-xl)', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CheckCircle2 size={16} style={{ color: 'var(--accent-primary)' }} />
+                <span>No Credit Card Required</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent"></span>
-                Open source SDK
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CheckCircle2 size={16} style={{ color: 'var(--accent-primary)' }} />
+                <span>ISO27001 Certified</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent"></span>
-                Enterprise support
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CheckCircle2 size={16} style={{ color: 'var(--accent-primary)' }} />
+                <span>Cancel Anytime</span>
               </div>
             </div>
           </div>
