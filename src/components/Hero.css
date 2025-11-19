@@ -195,6 +195,26 @@
   background: #09090b; /* Zinc 950 */
 }
 
+/* Chat Widget Styles */
+.chat-input-container {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chat-input-container:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 20px 40px -12px rgba(22, 163, 74, 0.15);
+  transform: translateY(-2px);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .hero-content {
