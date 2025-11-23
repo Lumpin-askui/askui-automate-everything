@@ -51,34 +51,34 @@ const Header = () => {
                             <div className="text-xs font-bold text-muted-foreground mb-4 uppercase tracking-wider">Platform</div>
                             <div className="grid gap-3">
                               <NavigationMenuLink asChild>
-                                <a href="/#products" className="block group">
+                                <a href="https://www.caesr.ai" target="_blank" rel="noopener noreferrer" className="block group">
                                   <div className="flex items-center gap-2 mb-1">
                                     <MessageSquare className="h-4 w-4 text-primary" />
-                                    <div className="font-semibold text-foreground group-hover:text-primary transition-colors" style={{ color: 'var(--text-primary)' }}>AskUI Caesr</div>
+                                    <div className="font-semibold text-foreground group-hover:text-primary transition-colors" style={{ color: 'var(--text-primary)' }}>Caesr Chat</div>
                                   </div>
                                   <div className="text-xs text-muted-foreground line-clamp-2" style={{ color: 'var(--text-secondary)' }}>Universal chat assistant</div>
                                 </a>
                               </NavigationMenuLink>
                               <NavigationMenuLink asChild>
-                                <a href="/#products" className="block group">
+                                <Link to="/enterprise" className="block group">
                                   <div className="flex items-center gap-2 mb-1">
                                     <LayoutDashboard className="h-4 w-4 text-primary" />
                                     <div className="font-semibold text-foreground group-hover:text-primary transition-colors" style={{ color: 'var(--text-primary)' }}>Caesr Desktop</div>
                                   </div>
                                   <div className="text-xs text-muted-foreground line-clamp-2" style={{ color: 'var(--text-secondary)' }}>Desktop control center</div>
-                                </a>
+                                </Link>
                               </NavigationMenuLink>
                               <NavigationMenuLink asChild>
-                                <a href="/#products" className="block group">
+                                <Link to="/enterprise" className="block group">
                                   <div className="flex items-center gap-2 mb-1">
                                     <Monitor className="h-4 w-4 text-primary" />
                                     <div className="font-semibold text-foreground group-hover:text-primary transition-colors" style={{ color: 'var(--text-primary)' }}>Agent OS</div>
                                   </div>
                                   <div className="text-xs text-muted-foreground line-clamp-2" style={{ color: 'var(--text-secondary)' }}>Headless infrastructure</div>
-                                </a>
+                                </Link>
                               </NavigationMenuLink>
                               <NavigationMenuLink asChild>
-                                <a href="/#products" className="block group">
+                                <a href="https://github.com/askui/vision-agent" target="_blank" rel="noopener noreferrer" className="block group">
                                   <div className="flex items-center gap-2 mb-1">
                                     <Terminal className="h-4 w-4 text-primary" />
                                     <div className="font-semibold text-foreground group-hover:text-primary transition-colors" style={{ color: 'var(--text-primary)' }}>CLI & SDK</div>

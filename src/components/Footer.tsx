@@ -63,13 +63,16 @@ const Footer = () => {
             </h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
               <li>
-                <a href="/#products" className="footer-link">AskUI Caesr</a>
+                <a href="https://www.caesr.ai" target="_blank" rel="noopener noreferrer" className="footer-link">Caesr Chat</a>
               </li>
               <li>
-                <a href="/#products" className="footer-link">Agent OS</a>
+                <Link to="/enterprise" className="footer-link">Caesr Desktop</Link>
               </li>
               <li>
-                <a href="/#products" className="footer-link">CLI & SDK</a>
+                <Link to="/enterprise" className="footer-link">Agent OS</Link>
+              </li>
+              <li>
+                <a href="https://github.com/askui/vision-agent" target="_blank" rel="noopener noreferrer" className="footer-link">CLI & SDK</a>
               </li>
             </ul>
           </div>

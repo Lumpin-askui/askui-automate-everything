@@ -97,42 +97,42 @@ const VisualPrivacy = () => (
 const problems = [
   {
     visual: VisualPlatform,
-    title: "Limited Platform Support",
+    title: "Platforms are no longer a limit",
     problem: "CUAs typically struggle with cross-platform compatibility.",
     solution: "Universal compatibility across Android, Windows, MacOS, iOS and Linux.",
     highlight: "var(--accent-primary)"
   },
   {
     visual: VisualIntegration,
-    title: "Integration Complexity",
+    title: "Lose your Integration Complexity",
     problem: "Complex configuration makes CUA models hard to deploy.",
     solution: "Simple SDK and CLI for seamless model integration in minutes.",
     highlight: "var(--accent-primary)"
   },
   {
     visual: VisualReliability,
-    title: "Production Reliability",
+    title: "Reliability you can trust",
     problem: "Inconsistent performance prevents production use.",
     solution: "Optimized infrastructure for consistent, fast, and reliable performance.",
     highlight: "var(--accent-primary)"
   },
   {
     visual: VisualBarriers,
-    title: "Technical Barriers",
+    title: "Automation for everyone",
     problem: "Non-technical users are locked out of automation.",
     solution: "Caesr app provides an intuitive chat interface for everyone.",
     highlight: "var(--accent-primary)"
   },
   {
     visual: VisualEnterprise,
-    title: "Enterprise Readiness",
+    title: "Enterprise-ready out of the box",
     problem: "Lack of security and compliance features.",
     solution: "ISO27001 certified with on-premise deployment support.",
     highlight: "var(--accent-primary)"
   },
   {
     visual: VisualPrivacy,
-    title: "Privacy Concerns",
+    title: "Complete Data Sovereignty",
     problem: "Risks around data sovereignty and vendor lock-in.",
     solution: "Bring-your-own-model with complete data sovereignty.",
     highlight: "var(--accent-primary)"
@@ -145,8 +145,8 @@ const Problems = () => {
       <div className="container-custom">
         <div style={{ textAlign: 'center', marginBottom: 'var(--space-3xl)' }}>
           <h2 className="section-title">
-            Solving the <br />
-            <span className="text-accent">Hardest Problems</span> in Automation
+            Solve your <br />
+            <span className="text-accent">Hardest Problems</span>
           </h2>
           <p className="section-subtitle">
             We've built the infrastructure to make computer use agents enterprise-ready, reliable, and accessible.

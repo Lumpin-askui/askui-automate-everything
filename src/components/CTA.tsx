@@ -58,7 +58,7 @@ const CTA = () => {
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'var(--space-xl)', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle2 size={16} style={{ color: 'var(--accent-primary)' }} />
-                <span>No Credit Card Required</span>
+                <span>BYOM Support</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle2 size={16} style={{ color: 'var(--accent-primary)' }} />
@@ -66,7 +66,7 @@ const CTA = () => {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle2 size={16} style={{ color: 'var(--accent-primary)' }} />
-                <span>Cancel Anytime</span>
+                <span>Any Device</span>
               </div>
             </div>
           </div>

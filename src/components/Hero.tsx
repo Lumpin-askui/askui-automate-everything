@@ -54,11 +54,11 @@ const Hero = () => {
               
               <h1 className="hero-title">
                 Test fast. <br />
-                <span className="text-accent-gradient">Fearless Release.</span>
+                <span className="text-accent-gradient" style={{ whiteSpace: 'nowrap' }}>Release fearlessly.</span>
               </h1>
               
               <p className="hero-subtitle" style={{ fontSize: '1.5rem', fontWeight: 500, marginTop: '1rem' }}>
-                Quality control for any device.
+                Quality control for any device. Give your AI agents the infrastructure they need.
               </p>
 
               <div className="hero-actions">
