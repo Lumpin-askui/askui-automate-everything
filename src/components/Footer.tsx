@@ -72,18 +72,6 @@ const Footer = () => {
                 <a href="/#products" className="footer-link">CLI & SDK</a>
               </li>
             </ul>
-
-            <h3 style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-lg)', marginTop: 'var(--space-xl)' }}>
-              Technologies
-            </h3>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
-              <li>
-                <Link to="/solutions/citrix" className="footer-link">Citrix Automation</Link>
-              </li>
-              <li>
-                <Link to="/solutions/sap" className="footer-link">SAP Automation</Link>
-              </li>
-            </ul>
           </div>
 
           {/* Use Cases */}
@@ -100,6 +88,18 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/solutions/agent-startups" className="footer-link">Agent Startups</Link>
+              </li>
+            </ul>
+
+            <h3 style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 'var(--space-lg)', marginTop: 'var(--space-xl)' }}>
+              Technologies
+            </h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
+              <li>
+                <Link to="/solutions/citrix" className="footer-link">Citrix Automation</Link>
+              </li>
+              <li>
+                <Link to="/solutions/sap" className="footer-link">SAP Automation</Link>
               </li>
             </ul>
           </div>

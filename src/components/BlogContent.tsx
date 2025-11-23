@@ -1,6 +1,8 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useMemo } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface BlogContentProps {
   content: string;
@@ -37,7 +39,6 @@ const BlogContent = ({ content }: BlogContentProps) => {
                     prose-li:marker:text-[#962C5D]
                     prose-blockquote:border-l-4 prose-blockquote:border-[#962C5D] prose-blockquote:pl-4 prose-blockquote:italic
                     prose-code:bg-muted prose-code:p-1 prose-code:rounded prose-code:text-sm
-                    prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
                     prose-img:rounded-lg prose-img:shadow-md prose-img:mx-auto prose-img:my-8
                     prose-table:w-full prose-table:border-collapse prose-table:my-8
                     prose-th:bg-muted prose-th:p-3 prose-th:text-left prose-th:font-semibold prose-th:border-b
@@ -55,6 +56,28 @@ const BlogContent = ({ content }: BlogContentProps) => {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
+          // Custom code block rendering with syntax highlighting
+          pre: ({ children }: any) => <>{children}</>,
+          code({node, inline, className, children, ...props}: any) {
+            const match = /language-(\w+)/.exec(className || '')
+            return !inline && match ? (
+              <div className="not-prose rounded-md overflow-hidden my-6 shadow-md border border-border/50">
+                <SyntaxHighlighter
+                  {...props}
+                  style={vscDarkPlus}
+                  language={match[1]}
+                  PreTag="div"
+                  customStyle={{ margin: 0, padding: '1.5rem', fontSize: '0.9rem' }}
+                >
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
+              </div>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            )
+          },
           // Custom heading components to ensure proper rendering
           h1: ({ children, ...props }: any) => (
             <h1 className="text-4xl font-bold mb-4 mt-8 text-foreground first:mt-0" {...props}>

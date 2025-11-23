@@ -30,6 +30,17 @@ const CustomerStory = () => {
   return (
     <section className="section-padding" style={{ backgroundColor: 'var(--bg-secondary)' }}>
       <div className="container-custom">
+        <div style={{ textAlign: 'center', marginBottom: 'var(--space-2xl)' }}>
+          <p className="section-subtitle" style={{ textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
+            Reference
+          </p>
+          <h2 className="section-title">
+            AskUI x Deutsche Bahn
+          </h2>
+          <p className="section-subtitle">
+            See how Germany's largest railway reduced test time by 80% with AskUI.
+          </p>
+        </div>
         <div className="glass-panel" style={{ overflow: 'hidden' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr' }} className="customer-story-grid">
             

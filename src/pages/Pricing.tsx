@@ -2,10 +2,78 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { CheckCircle, ArrowRight, Terminal, MessageSquare, Cloud, Code, Monitor, Calculator, Users, Building, Laptop } from "lucide-react";
+import { CheckCircle, ArrowRight, Terminal, Users, Building, Laptop, Calculator, Cloud, Code } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const Pricing = () => {
+  const [isYearly, setIsYearly] = useState(false);
+
+  const pricingTiers = [
+    {
+      title: "Developer",
+      description: "Core Engine (Community)",
+      price: "€0",
+      period: "",
+      features: [
+        "AskUI Core (SDK & CLI)",
+        "500 Inference Credits/month",
+        "Local Execution",
+        "Community Support"
+      ],
+      cta: "Start Building",
+      link: "https://docs.askui.com/docs/general/Cli/GettingStarted",
+      variant: "outline",
+      popular: false
+    },
+    {
+      title: "Professional",
+      description: "Neural Cloud & Co-Pilot",
+      price: isYearly ? "€278" : "€29",
+      period: isYearly ? "/year" : "/month",
+      pricePrefix: "from ",
+      features: isYearly ? [
+        "Usage based pricing:",
+        "18.000 credits/year → € 278,00",
+        "60.000 credits/year → € 900,00",
+        "360.000 credits/year → € 5.500,00",
+        "1.200.000 credits/year → € 10.000,00",
+        "Access to AskUI Neural Cloud",
+        "Caesr Copilot (Prompt-to-Agent)"
+      ] : [
+        "Usage based pricing:",
+        "1.500 credits/month → € 29,00",
+        "5.000 credits/month → € 94,00",
+        "30.000 credits/month → € 549,00",
+        "100.000 credits/month → € 1.000,00",
+        "Access to AskUI Neural Cloud",
+        "Caesr Copilot (Prompt-to-Agent)"
+      ],
+      cta: "Automate without limits",
+      link: "https://app.askui.com/register",
+      variant: "default",
+      popular: true
+    },
+    {
+      title: "Enterprise",
+      description: "Control Plane",
+      price: "Custom",
+      period: "",
+      features: [
+        "AgentOS (Orchestrator)",
+        "Private Inference (BYOM)",
+        "VPC / On-Premise",
+        "Self-Healing Agents",
+        "SSO & Audit Logs"
+      ],
+      cta: "Book Demo",
+      link: "/enterprise",
+      variant: "outline",
+      popular: false
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -14,11 +82,32 @@ const Pricing = () => {
       <section className="pt-20 pb-16 md:pt-32 md:pb-24 bg-secondary/30 border-b border-border">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
-            Control Every Pixel. On Any Device.
+            The LAM Infrastructure for <span className="text-accent-gradient">Agentic Automation</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            From legacy desktop software to modern mobile apps. Chat with Caesr to automate workflows across your entire tech stack.
+            Move beyond brittle RPA. Build Vision Agents that see and interact with any screen—Mobile, Citrix, Canvas—just like a human.
           </p>
+
+          {/* Toggle */}
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <span className={cn("text-sm font-medium", !isYearly ? "text-primary" : "text-muted-foreground")}>
+              Monthly
+            </span>
+            <button
+              onClick={() => setIsYearly(!isYearly)}
+              className="relative w-12 h-6 rounded-full bg-primary/20 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20"
+            >
+              <div
+                className={cn(
+                  "absolute top-1 left-1 w-4 h-4 rounded-full bg-primary transition-transform duration-200",
+                  isYearly ? "translate-x-6" : "translate-x-0"
+                )}
+              />
+            </button>
+            <span className={cn("text-sm font-medium", isYearly ? "text-primary" : "text-muted-foreground")}>
+              Yearly
+            </span>
+          </div>
         </div>
       </section>
 
@@ -52,142 +141,136 @@ const Pricing = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             
-            {/* Develop (Free) */}
-            <Card className="flex flex-col border-border shadow-lg hover:shadow-xl transition-all">
+            {pricingTiers.map((tier, index) => (
+              <Card key={index} className={cn(
+                "flex flex-col border-border shadow-lg hover:shadow-xl transition-all",
+                tier.popular ? "border-primary relative scale-105 z-10" : ""
+              )}>
+                {tier.popular && (
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                    Most Popular
+                  </div>
+                )}
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    {index === 0 ? <Terminal className="h-6 w-6 text-primary" /> : 
+                     index === 1 ? <Users className="h-6 w-6 text-primary" /> : 
+                     <Building className="h-6 w-6 text-primary" />}
+                  </div>
+                  <CardTitle className="text-2xl">{tier.title}</CardTitle>
+                  <CardDescription>{tier.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1 flex flex-col">
+                  <div className="mb-6">
+                    <div className="text-3xl font-bold">
+                      {tier.pricePrefix && <span className="text-xl font-normal text-muted-foreground">{tier.pricePrefix}</span>}
+                      {tier.price} <span className="text-sm font-normal text-muted-foreground">{tier.period}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-3 mb-8 flex-1">
+                    {tier.features.map((feature, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        {feature.includes("Usage based pricing:") ? (
+                          <span className="text-sm font-semibold mt-1">{feature}</span>
+                        ) : (
+                          <>
+                            <CheckCircle className="h-4 w-4 text-primary mt-1 shrink-0" />
+                            <span className="text-sm">{feature}</span>
+                          </>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {tier.link.startsWith("http") ? (
+                     <Button className={cn("w-full", tier.variant === "default" ? "bg-primary hover:bg-primary/90" : "")} variant={tier.variant as "default" | "outline"} asChild>
+                      <a href={tier.link} target="_blank" rel="noopener noreferrer">
+                        {tier.cta}
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button className={cn("w-full", tier.variant === "default" ? "bg-primary hover:bg-primary/90" : "")} variant={tier.variant as "default" | "outline"} asChild>
+                      <Link to={tier.link}>
+                        {tier.cta}
+                      </Link>
+                    </Button>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      {/* The Optimized Product Suite */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">The Optimized Product Suite</h2>
+            <p className="text-muted-foreground">Platform Layer (Infrastructure) & Application Layer (User Experience)</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Layer A: Core Engine */}
+            <Card className="bg-background border-border">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Laptop className="h-6 w-6 text-primary" />
+                <div className="flex items-center gap-3 mb-2">
+                  <Code className="h-6 w-6 text-primary" />
+                  <CardTitle>Layer A: The Core Engine</CardTitle>
                 </div>
-                <CardTitle className="text-2xl">Develop</CardTitle>
-                <CardDescription>Community</CardDescription>
+                <CardDescription>Developer & Runtime Infrastructure</CardDescription>
               </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    For building agents on your laptop. Perfect for developers and hackers.
-                  </p>
-                  <div className="text-3xl font-bold">Free <span className="text-sm font-normal text-muted-foreground">/ forever</span></div>
-                </div>
-                <div className="space-y-3 mb-8 flex-1">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm"><strong>Controller:</strong> AskUI CLI</span>
+              <CardContent>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Terminal size={16} className="text-primary" /> AskUI Core (SDK & CLI)
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      The open-source "eyes and hands" of the platform. Python/Node.js libraries that allow developers to write code like <code className="bg-muted px-1 py-0.5 rounded">await aui.click('Sign In')</code>.
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm"><strong>Brain:</strong> BYOK (Any LLM)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Local Logging</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Runs on Localhost</span>
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Cloud size={16} className="text-primary" /> AskUI Neural Cloud
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      The brain. Processes screenshots via computer vision to identify elements and return coordinates. Supports "Private Inference" (BYOM) for regulated industries.
+                    </p>
                   </div>
                 </div>
-                <Button className="w-full" variant="outline" asChild>
-                  <a href="https://docs.askui.com/docs/general/Cli/GettingStarted" target="_blank" rel="noopener noreferrer">
-                    Start Building
-                  </a>
-                </Button>
               </CardContent>
             </Card>
 
-            {/* Automate (Cloud) */}
-            <Card className="flex flex-col border-primary shadow-xl relative scale-105 z-10">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
-                Most Popular
-              </div>
+            {/* Layer B: Enterprise Control Plane */}
+            <Card className="bg-background border-border">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle className="text-2xl">AskUI Caesr</CardTitle>
-                <CardDescription>Universal Co-Pilot</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Plug and play mobile & desktop automation. Chat with your infrastructure.
-                  </p>
-                  <div className="text-3xl font-bold">€49 <span className="text-sm font-normal text-muted-foreground">/ seat / month</span></div>
-                </div>
-                
-                <div className="space-y-3 mb-8 flex-1">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm"><strong>Controls:</strong> Desktop, Web, Mobile</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm"><strong>Brain:</strong> Managed LLMs (Claude, GPT-4)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm">1,000 Cloud Steps included (then €0.05 / step)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Team Dashboard & Traces</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Attended Execution (GUI)</span>
-                  </div>
-                </div>
-
-                <Button className="w-full bg-primary hover:bg-primary/90" asChild>
-                  <a href="https://app.askui.com/register" target="_blank" rel="noopener noreferrer">
-                    Start Free Trial
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Scale (Agent OS) */}
-            <Card className="flex flex-col border-border shadow-lg hover:shadow-xl transition-all">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <div className="flex items-center gap-3 mb-2">
                   <Building className="h-6 w-6 text-primary" />
+                  <CardTitle>Layer B: Enterprise Control Plane</CardTitle>
                 </div>
-                <CardTitle className="text-2xl">Agent OS</CardTitle>
-                <CardDescription>Universal Worker</CardDescription>
+                <CardDescription>Orchestration & User Experience</CardDescription>
               </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    For unattended production workloads. Deploy digital workers on servers or edge devices.
-                  </p>
-                  <div className="text-3xl font-bold">Custom</div>
-                </div>
-                <div className="space-y-3 mb-8 flex-1">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm"><strong>Controller:</strong> Agent OS License</span>
+              <CardContent>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Laptop size={16} className="text-primary" /> AgentOS & Controllers
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      The "UiPath Orchestrator" Killer. Centralized dashboard with lightweight controllers on target machines. Features self-healing capabilities to adjust workflows automatically.
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm"><strong>Deployment:</strong> On-Prem / Private Cloud</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Headless / Background Service</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Unlimited Duration (24/7)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span className="text-sm">SLA & Dedicated Support</span>
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Users size={16} className="text-primary" /> AskUI Studio & Copilot
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Visual flow builder and "Prompt-to-Agent" generator. Type a request, and the system generates the automation script instantly.
+                    </p>
                   </div>
                 </div>
-                <Button className="w-full" variant="outline" asChild>
-                  <Link to="/enterprise">
-                    Contact Sales
-                  </Link>
-                </Button>
               </CardContent>
             </Card>
           </div>
@@ -207,37 +290,31 @@ const Pricing = () => {
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left p-4 font-semibold text-foreground">Feature</th>
-                  <th className="text-left p-4 font-semibold text-foreground">Develop (CLI)</th>
-                  <th className="text-left p-4 font-semibold text-primary">AskUI Caesr</th>
-                  <th className="text-left p-4 font-semibold text-foreground">Agent OS</th>
+                  <th className="text-left p-4 font-semibold text-foreground">Developer</th>
+                  <th className="text-left p-4 font-semibold text-primary">Professional</th>
+                  <th className="text-left p-4 font-semibold text-foreground">Enterprise</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-border/50">
+                  <td className="p-4 text-sm font-medium">Inference Engine</td>
+                  <td className="p-4 text-sm text-muted-foreground">500 Credits / month</td>
+                  <td className="p-4 text-sm text-foreground">Usage Based</td>
+                  <td className="p-4 text-sm text-muted-foreground">Volume Discounts</td>
+                </tr>
+                <tr className="border-b border-border/50">
                   <td className="p-4 text-sm font-medium">Environment</td>
                   <td className="p-4 text-sm text-muted-foreground">Localhost</td>
-                  <td className="p-4 text-sm text-foreground">Desktop, Web, Mobile</td>
-                  <td className="p-4 text-sm text-muted-foreground">Headless / Background Service</td>
+                  <td className="p-4 text-sm text-foreground">Cloud Inference</td>
+                  <td className="p-4 text-sm text-muted-foreground">VPC / On-Premise</td>
                 </tr>
                 <tr className="border-b border-border/50">
-                  <td className="p-4 text-sm font-medium">Session Limit</td>
-                  <td className="p-4 text-sm text-muted-foreground">Manual</td>
-                  <td className="p-4 text-sm text-foreground">Auto-timeout (2h)</td>
-                  <td className="p-4 text-sm text-muted-foreground">Unlimited Duration (24/7)</td>
+                  <td className="p-4 text-sm font-medium">Orchestration</td>
+                  <td className="p-4 text-sm text-muted-foreground">Local Runner</td>
+                  <td className="p-4 text-sm text-foreground">Managed Controllers</td>
+                  <td className="p-4 text-sm text-muted-foreground">AgentOS (Self-Healing)</td>
                 </tr>
-                <tr className="border-b border-border/50">
-                  <td className="p-4 text-sm font-medium">Triggering</td>
-                  <td className="p-4 text-sm text-muted-foreground">Manual / Local Script</td>
-                  <td className="p-4 text-sm text-foreground">Manual / Local Script</td>
-                  <td className="p-4 text-sm text-muted-foreground">Webhook / API / CI/CD</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="p-4 text-sm font-medium">Intelligence</td>
-                  <td className="p-4 text-sm text-muted-foreground">BYOK (Any LLM)</td>
-                  <td className="p-4 text-sm text-foreground">Managed LLMs</td>
-                  <td className="p-4 text-sm text-muted-foreground">Private / Custom LLMs</td>
-                </tr>
-                <tr>
+                 <tr className="border-b border-border/50">
                   <td className="p-4 text-sm font-medium">Support</td>
                   <td className="p-4 text-sm text-muted-foreground">Community</td>
                   <td className="p-4 text-sm text-foreground">Email</td>
@@ -245,82 +322,6 @@ const Pricing = () => {
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Developer Tools Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Developer Tools</h2>
-            <p className="text-muted-foreground">Build powerful automations with our developer-first ecosystem</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="bg-background border-border">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <Terminal className="h-6 w-6 text-primary" />
-                  <CardTitle>AskUI CLI</CardTitle>
-                </div>
-                <CardDescription>Automation as Code</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Integrate automation into your CI/CD pipelines. Configure environments, manage runners, and execute headless workflows from your terminal.
-                </p>
-                <div className="p-4 bg-secondary rounded-md font-mono text-xs mb-6 text-foreground/80 overflow-hidden relative">
-                  <div className="flex items-center gap-2 mb-3 text-primary/70 border-b border-border/50 pb-2">
-                    <Terminal size={12} />
-                    <span>askui-runner</span>
-                  </div>
-                  <div className="grid grid-cols-[80px_1fr] gap-x-4 gap-y-1">
-                    <span className="text-primary">run</span>
-                    <span className="text-muted-foreground">Execute test cases</span>
-                    <span className="text-primary">init</span>
-                    <span className="text-muted-foreground">Create test suite</span>
-                    <span className="text-primary">ui</span>
-                    <span className="text-muted-foreground">Launch Controller</span>
-                  </div>
-                </div>
-                <Button variant="secondary" className="w-full" asChild>
-                  <a href="https://docs.askui.com/docs/general/Cli/GettingStarted" target="_blank" rel="noopener noreferrer">
-                    Read Docs
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-background border-border">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <Code className="h-6 w-6 text-primary" />
-                  <CardTitle>AskUI SDK</CardTitle>
-                </div>
-                <CardDescription>Open Source Library</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-6">
-                  The core building block for your agents. Typescript & Python libraries to control operating systems via vision.
-                </p>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="flex items-center gap-2 text-sm">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>Open Source</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>MIT License</span>
-                  </div>
-                </div>
-                <Button variant="secondary" className="w-full" asChild>
-                  <a href="https://github.com/askui/vision-agent" target="_blank" rel="noopener noreferrer">
-                    View on GitHub
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>

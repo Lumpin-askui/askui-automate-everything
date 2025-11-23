@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, MessageSquare, Terminal, Monitor, Code, Cloud, Shield, Zap, Rocket, Briefcase, Landmark, ShoppingCart, Heart, Phone, Factory, Car, Cpu, AppWindow, Layers, Github } from "lucide-react";
+import { Menu, X, ChevronDown, MessageSquare, Terminal, Monitor, Code, Cloud, Shield, Zap, Rocket, Briefcase, Landmark, ShoppingCart, Heart, Phone, Factory, Car, Cpu, AppWindow, Layers, Github, LayoutDashboard } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -34,7 +34,7 @@ const Header = () => {
 
             {/* Desktop Navigation - Left Aligned */}
             <div className="hidden md:flex md:items-center md:gap-6">
-              <NavigationMenu disableHover delayDuration={100}>
+              <NavigationMenu delayDuration={100}>
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger
@@ -57,6 +57,15 @@ const Header = () => {
                                     <div className="font-semibold text-foreground group-hover:text-primary transition-colors" style={{ color: 'var(--text-primary)' }}>AskUI Caesr</div>
                                   </div>
                                   <div className="text-xs text-muted-foreground line-clamp-2" style={{ color: 'var(--text-secondary)' }}>Universal chat assistant</div>
+                                </a>
+                              </NavigationMenuLink>
+                              <NavigationMenuLink asChild>
+                                <a href="/#products" className="block group">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <LayoutDashboard className="h-4 w-4 text-primary" />
+                                    <div className="font-semibold text-foreground group-hover:text-primary transition-colors" style={{ color: 'var(--text-primary)' }}>Caesr Desktop</div>
+                                  </div>
+                                  <div className="text-xs text-muted-foreground line-clamp-2" style={{ color: 'var(--text-secondary)' }}>Desktop control center</div>
                                 </a>
                               </NavigationMenuLink>
                               <NavigationMenuLink asChild>
@@ -208,13 +217,13 @@ const Header = () => {
 
           {/* Desktop CTA Buttons - Right Aligned */}
           <div className="hidden md:flex md:items-center md:gap-3">
-            <a href="https://github.com/askui/vision-agent" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-foreground transition-colors mr-2">
-              <Github className="h-5 w-5" style={{ color: 'var(--text-secondary)' }} />
-            </a>
             <a href="https://app.caesr.ai" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="sm" className="text-foreground/80 hover:text-foreground hover:bg-accent/10" style={{ color: 'var(--text-primary)' }}>
                 Log in
               </Button>
+            </a>
+            <a href="https://github.com/askui/vision-agent" target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-foreground transition-colors mx-2">
+              <Github className="h-5 w-5" style={{ color: 'var(--text-secondary)' }} />
             </a>
             <Link to="/enterprise">
               <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90 text-accent font-semibold shadow-[0_0_15px_rgba(117,255,101,0.3)] hover:shadow-[0_0_20px_rgba(117,255,101,0.5)] transition-all" style={{ backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)', boxShadow: 'none' }}>
@@ -248,6 +257,10 @@ const Header = () => {
                   <a href="/#products" className="flex items-center gap-3 p-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/5">
                     <MessageSquare className="h-4 w-4" style={{ color: 'var(--text-secondary)' }} />
                     <span className="font-medium" style={{ color: 'var(--text-primary)' }}>AskUI Caesr</span>
+                  </a>
+                  <a href="/#products" className="flex items-center gap-3 p-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/5">
+                    <LayoutDashboard className="h-4 w-4" style={{ color: 'var(--text-secondary)' }} />
+                    <span className="font-medium" style={{ color: 'var(--text-primary)' }}>Caesr Desktop</span>
                   </a>
                   <a href="/#products" className="flex items-center gap-3 p-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/5">
                     <Monitor className="h-4 w-4" style={{ color: 'var(--text-secondary)' }} />
