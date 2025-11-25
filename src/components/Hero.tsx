@@ -53,12 +53,12 @@ const Hero = () => {
               </Link>
               
               <h1 className="hero-title">
-                Test fast. <br />
-                <span className="text-accent-gradient" style={{ whiteSpace: 'nowrap' }}>Release fearlessly.</span>
+                Deploy Agents <br />
+                <span className="text-accent-gradient" style={{ whiteSpace: 'nowrap' }}>on Any Device.</span>
               </h1>
               
               <p className="hero-subtitle" style={{ fontSize: '1.5rem', fontWeight: 500, marginTop: '1rem' }}>
-                Quality control for any device. Give your AI agents the infrastructure they need.
+                The infrastructure layer for AI-driven automation across desktop, mobile, and embedded systems.
               </p>
 
               <div className="hero-actions">
@@ -94,7 +94,7 @@ const Hero = () => {
       </section>
 
       {/* Customer Logos */}
-      <section style={{ padding: 'var(--space-2xl) 0', background: 'var(--bg-primary)', borderBottom: '1px solid var(--border-subtle)' }}>
+      <section style={{ padding: 'var(--space-xl) 0 var(--space-2xl)', background: 'var(--bg-primary)', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="container-custom">
           <p style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-tertiary)', marginBottom: 'var(--space-xl)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
             Trusted by Engineering Teams At
